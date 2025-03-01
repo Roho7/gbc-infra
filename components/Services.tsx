@@ -1,7 +1,6 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Building2, Factory, Hammer, HardHat, Ruler, Warehouse } from "lucide-react";
+import { ArrowRight, Factory, HardHat, Warehouse } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const services = [

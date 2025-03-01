@@ -26,7 +26,7 @@ const Hero = () => {
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl animate-fade-in">
               Building{" "}
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                Tomorrow's
+                Tomorrow&apos;s
               </span>{" "}
               Infrastructure Today
             </h1>

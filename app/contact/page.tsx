@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Phone, Mail, MapPin, Send, User, MessageSquare, Building } from "lucide-react";
+import { Phone, Mail, MapPin, Send, User, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";

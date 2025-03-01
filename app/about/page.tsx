@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Award, Building, Users, Target, Clock } from "lucide-react";
+import { Award, Building, Users, Target } from "lucide-react";
 import CorporatePolicies from "./_components/CorporatePolicies";
 
 export default function AboutPage() {
@@ -144,13 +144,13 @@ export default function AboutPage() {
               <div className="md:col-span-2 p-8 md:p-10">
                 <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Mr. Bijay Chowdhury</h3>
                 <p className="text-gray-700 dark:text-gray-300 mb-4 italic">
-                  "At GBC Infrastructure, we are committed to excellence in every project we undertake. Our vision is to be the leading infrastructure company known for quality, innovation, and timely delivery."
+                &quot;At GBC Infrastructure, we are committed to excellence in every project we undertake. Our vision is to be the leading infrastructure company known for quality, innovation, and timely delivery.&quot;
                 </p>
                 <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  "We believe in building not just structures, but relationships based on trust and mutual respect. Our team's dedication and expertise enable us to deliver projects that exceed expectations and contribute to the development of our nation."
+                &quot;We believe in building not just structures, but relationships based on trust and mutual respect. Our team&apos;s dedication and expertise enable us to deliver projects that exceed expectations and contribute to the development of our nation.&quot;
                 </p>
                 <p className="text-gray-700 dark:text-gray-300">
-                  "As we look to the future, we remain committed to sustainable practices, technological advancement, and the highest standards of professionalism in all our endeavors."
+                &quot;As we look to the future, we remain committed to sustainable practices, technological advancement, and the highest standards of professionalism in all our endeavors.&quot;
                 </p>
               </div>
             </div>

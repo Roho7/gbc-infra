@@ -38,7 +38,7 @@ const Testimonials = () => {
             What Our <span className="text-blue-600">Clients Say</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Don't just take our word for it. Hear from the clients who have
+            Don&apos;t just take our word for it. Hear from the clients who have
             experienced our commitment to excellence.
           </p>
         </div>
@@ -52,7 +52,7 @@ const Testimonials = () => {
               >
                 <Quote className="text-blue-600/20 h-12 w-12 absolute -top-2 -left-2" />
                 <p className="text-muted-foreground mb-6 italic relative z-10">
-                  "{testimonial.quote}"
+                &quot;{testimonial.quote}&quot;
                 </p>
                 <div className="mt-auto flex items-center">
                   <div className="relative h-12 w-12 overflow-hidden rounded-full mr-4 border-2 border-blue-600">

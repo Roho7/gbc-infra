@@ -21,7 +21,7 @@ const Footer = () => {
               <span className="font-bold text-xl text-white">GBC Infrastructure</span>
             </Link>
             <p className="text-gray-400 mb-6">
-              Building tomorrow's infrastructure with innovation, quality, and
+              Building tomorrow&apos;s infrastructure with innovation, quality, and
               sustainability.
             </p>
             <div className="flex space-x-4">

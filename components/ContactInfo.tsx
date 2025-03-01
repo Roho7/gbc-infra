@@ -1,6 +1,5 @@
 import React from "react";
 import { Phone, Mail, MapPin } from "lucide-react";
-import Link from "next/link";
 
 const ContactInfo = () => {
   return (
