@@ -46,11 +46,11 @@ const Navbar = () => {
           : "bg-transparent"
       }`}
     >
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center space-x-2">
             <Image
-              src="/logo01.png"
+              src="/logo-black.png"
               alt="GBC Infrastructure Logo"
               width={40}
               height={40}
@@ -64,7 +64,7 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex">
-          <NavigationMenu>
+          <NavigationMenu className="relative">
             <NavigationMenuList>
               <NavigationMenuItem>
                 <Link href="/" legacyBehavior passHref>
@@ -82,15 +82,22 @@ const Navbar = () => {
                     <li className="row-span-3">
                       <NavigationMenuLink asChild>
                         <a
-                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-900 p-6 no-underline outline-none focus:shadow-md"
+                          className="overflow-hidden relative flex h-full w-full select-none flex-col justify-end rounded-md  p-6 no-underline outline-none focus:shadow-md group"
                           href="/about"
                         >
-                          <div className="mb-2 mt-4 text-lg font-medium text-blue-600 dark:text-blue-300">
+                          <div className="mb-2 mt-4 text-lg font-medium text-blue-600 dark:text-blue-300 group-hover:text-blue-50 z-10">
                             About GBC
                           </div>
-                          <p className="text-sm leading-tight text-gray-600 dark:text-gray-300">
+                          <p className="text-sm leading-tight text-gray-600 dark:text-gray-300 group-hover:text-gray-100 z-10">
                             Learn about our company, mission, and values
                           </p>
+                          <Image
+                          src="https://gbcinfrastructure.in/material/front/assets/img/banner-new-3.jpg"
+                          fill
+                          alt='gbc'
+                          className="absolute z-0 duration-100"
+                          />
+                          <div className="z-1 inset-0 absolute bg-gradient-to-br from-blue-50 group-hover:from-transparent to-blue-200 dark:from-blue-900 dark:to-blue-900 transition-colors"></div>
                         </a>
                       </NavigationMenuLink>
                     </li>

@@ -1,35 +1,20 @@
 'use client'
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 
 const images = [
   "https://gbcinfrastructure.in/material/front/assets/img/banner-new-3.jpg",
-  "https://gbcinfrastructure.in/material/front/assets/img/banner-new-4.jpg"
+  "https://gbcinfrastructure.in/material/front/assets/img/banner-new-4.jpg",
+  "https://gbcinfrastructure.in/material/front/assets/img/banner-new-3.jpg",
+  "https://gbcinfrastructure.in/material/front/assets/img/banner-new-4.jpg",
 ];
 
 const Hero = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  
-  useEffect(() => {
-    // Set up the image rotation
-    const intervalId = setInterval(() => {
-      setIsAnimating(true);
-      
-      // After the animation completes, change the image
-      setTimeout(() => {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-        setIsAnimating(false);
-      }, 5000); // 3 seconds for the animation
-    }, 5000); // 6 seconds total (3s animation + 3s static display)
-    
-    return () => clearInterval(intervalId);
-  }, []);
-
   return (
-    <section className="relative overflow-hidden bg-background ">
+    <section className="relative overflow-hidden bg-background px-2">
       {/* Background Pattern */}
       <div className="absolute inset-0 z-0 opacity-10">
         <div className="absolute inset-0 bg-grid-pattern-light dark:bg-grid-pattern-dark" />
@@ -58,33 +43,128 @@ const Hero = () => {
               </Button>
             </div>
           </div>
+          
+          {/* Scrolling Image Gallery */}
           <div className="relative h-[300px] sm:h-[400px] md:h-[90vh] rounded-lg overflow-hidden shadow-xl animate-fade-in">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 mix-blend-multiply z-10 rounded-lg"></div>
             
-            {/* Image Carousel */}
-            <div className="relative w-full h-full">
-              {images.map((src, index) => (
-                <div 
-                  key={index}
-                  className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                    index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-                  }`}
-                >
+            {/* Scrolling Container */}
+            <div className="relative w-full h-full overflow-hidden rounded-lg">
+              {/* First Column */}
+              <motion.div 
+                className="absolute left-0 w-1/2 px-2 space-y-4"
+                initial={{ y: 0 }}
+                animate={{ y: "-100%" }}
+                transition={{ 
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 30,
+                  ease: "linear"
+                }}
+              >
+                {images.map((src, index) => (
                   <div 
-                    className={`absolute inset-0 transition-transform duration-5000 ease-linear ${
-                      isAnimating && index === currentImageIndex ? 'scale-110' : 'scale-100'
-                    }`}
+                    key={`col1-${index}`} 
+                    className="relative w-full h-[200px] rounded-lg overflow-hidden shadow-md"
                   >
                     <Image
                       src={src}
                       alt={`GBC Infrastructure Project ${index + 1}`}
                       fill
                       className="object-cover"
-                      priority={index === 0}
+                      sizes="(max-width: 768px) 100vw, 50vw"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 to-transparent"></div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </motion.div>
+              
+              {/* Duplicate First Column (for seamless loop) */}
+              <motion.div 
+                className="absolute left-0 w-1/2 px-2 space-y-4 pt-4"
+                initial={{ y: "100%" }}
+                animate={{ y: "0%" }}
+                transition={{ 
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 30,
+                  ease: "linear",
+                }}
+              >
+                {images.map((src, index) => (
+                  <div 
+                    key={`col1-dup-${index}`} 
+                    className="relative w-full h-[200px] rounded-lg overflow-hidden shadow-md"
+                  >
+                    <Image
+                      src={src}
+                      alt={`GBC Infrastructure Project ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 to-transparent"></div>
+                  </div>
+                ))}
+              </motion.div>
+              
+              {/* Second Column (delayed start) */}
+              <motion.div 
+                className="absolute right-0 w-1/2 px-2 space-y-4 pt-4"
+                initial={{ y: 0 }}
+                animate={{ y: "100%" }}
+                transition={{ 
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 30, // Slightly slower for variation
+                  ease: "linear"
+                }}
+              >
+                {[...images].reverse().map((src, index) => (
+                  <div 
+                    key={`col2-${index}`} 
+                    className="relative w-full h-[200px] rounded-lg overflow-hidden shadow-md"
+                  >
+                    <Image
+                      src={src}
+                      alt={`GBC Infrastructure Project ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 to-transparent"></div>
+                  </div>
+                ))}
+              </motion.div>
+              
+              {/* Duplicate Second Column (for seamless loop) */}
+              <motion.div 
+                className="absolute right-0 w-1/2 px-2 space-y-4"
+                initial={{ y: "-100%" }}
+                animate={{ y: "0%" }}
+                transition={{ 
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 30, // Slightly slower for variation
+                  ease: "linear"
+                }}
+              >
+                {[...images].reverse().map((src, index) => (
+                  <div 
+                    key={`col2-dup-${index}`} 
+                    className="relative w-full h-[200px] rounded-lg overflow-hidden shadow-md"
+                  >
+                    <Image
+                      src={src}
+                      alt={`GBC Infrastructure Project ${index + 1}`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 to-transparent"></div>
+                  </div>
+                ))}
+              </motion.div>
             </div>
           </div>
         </div>

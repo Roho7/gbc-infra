@@ -10,15 +10,27 @@ export default function AboutPage() {
     <main className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-900 to-blue-950 opacity-90"></div>
-        <div className="absolute inset-0 bg-grid-pattern-dark opacity-20"></div>
+        {/* Background Image with Gradient Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="https://gbcinfrastructure.in/material/front/assets/img/banner-new-3.jpg"
+            alt="GBC Infrastructure"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/70 to-transparent"></div>
+        </div>
+        
+        {/* Grid Pattern Overlay */}
+        <div className="absolute inset-0 bg-grid-pattern-dark opacity-20 z-0"></div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
               About <span className="text-blue-400">GBC Infrastructure</span>
             </h1>
-            <p className="text-xl text-blue-100 mb-8 animate-fade-in">
+            <p className="text-xl text-blue-100 mb-8 max-w-2xl animate-fade-in">
               Building excellence through innovation, quality, and commitment since 2012
             </p>
           </div>
@@ -114,7 +126,7 @@ export default function AboutPage() {
 
       {/* Managing Director */}
       <section className="py-16 md:py-24 relative overflow-hidden">
-        <div className="container mx-auto px-4">
+        <div className="mx-auto px-4">
           <div className="text-center mb-16 animate-fade-in">
             <h2 className="text-3xl font-bold mb-2">Managing Director <span className="text-blue-600">Speaks</span></h2>
           </div>
@@ -146,8 +158,7 @@ export default function AboutPage() {
         </div>
         
         {/* Decorative elements */}
-        <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-600/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-20 -left-10 w-40 h-40 bg-indigo-600/10 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 bg-grid-pattern-light opacity-50 -z-10"></div>
       </section>
 
       {/* Our Team */}
