@@ -1,0 +1,233 @@
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Award, Building, Users, Target, Clock } from "lucide-react";
+import CorporatePolicies from "./_components/CorporatePolicies";
+
+export default function AboutPage() {
+  return (
+    <main className="flex flex-col min-h-screen">
+      {/* Hero Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-900 to-blue-950 opacity-90"></div>
+        <div className="absolute inset-0 bg-grid-pattern-dark opacity-20"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
+              About <span className="text-blue-400">GBC Infrastructure</span>
+            </h1>
+            <p className="text-xl text-blue-100 mb-8 animate-fade-in">
+              Building excellence through innovation, quality, and commitment since 2012
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Company Overview */}
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="animate-fade-in">
+              <h2 className="text-3xl font-bold mb-6">Our <span className="text-blue-600">Story</span></h2>
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                GBC Infrastructure (GBCI) was established in the year 2012 and since its inception GBCI has been engaged in major infrastructure projects. The company has grown from strength to strength over the years and has successfully executed many challenging and complex projects through the years. GBCI has earned a reputation in the government and other sector for completing projects on time with quality workmanship and has been awarded with many prestigious projects.
+              </p>
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                GBC Infrastructure Pvt. Ltd. is a fast-growing, quality assuring agency especially in the field of construction and commissioning of facilities and services. We are committed to construction work that helps society with rapid progress. We have established ourselves as a leading construction company in Eastern India. Our team of experienced and dedicated professionals ensures on-time delivery and attention to every minute detail to provide projects tailored making sure to the people who will use them.
+              </p>
+              <p className="text-gray-700 dark:text-gray-300">
+                We believe that our success is a shared partnership of the GBC team, our clients, and our community. With our ethical disposition, we have built the company on solid & a bright portfolio of excellence.
+              </p>
+            </div>
+            
+            <div className="relative rounded-lg overflow-hidden shadow-xl h-[400px] animate-fade-in">
+              <Image 
+                src="https://gbcinfrastructure.in/material/front/assets/img/banner-new-3.jpg"
+                alt="GBC Infrastructure Facility"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent"></div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Decorative elements */}
+        <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-600/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 -left-10 w-40 h-40 bg-indigo-600/10 rounded-full blur-3xl"></div>
+      </section>
+
+      {/* Our Values */}
+      <section className="py-16 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
+            <h2 className="text-3xl font-bold mb-6">Our <span className="text-blue-600">Values</span></h2>
+            <p className="text-gray-700 dark:text-gray-300">
+              At GBC Infrastructure, we are driven by a set of core values that guide our decisions and actions every day.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 stagger-children">
+            {[
+              {
+                icon: <Award className="h-10 w-10" />,
+                title: "Excellence",
+                description: "We strive for excellence in every project we undertake, ensuring the highest standards of quality and workmanship."
+              },
+              {
+                icon: <Building className="h-10 w-10" />,
+                title: "Innovation",
+                description: "We embrace innovative solutions and technologies to deliver infrastructure that meets the needs of tomorrow."
+              },
+              {
+                icon: <Users className="h-10 w-10" />,
+                title: "Collaboration",
+                description: "We believe that our success is built on strong partnerships with our clients, employees, and communities."
+              },
+              {
+                icon: <Target className="h-10 w-10" />,
+                title: "Integrity",
+                description: "We conduct our business with the highest ethical standards, transparency, and accountability."
+              }
+            ].map((value, index) => (
+              <div 
+                key={index}
+                className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg animate-fade-in hover-lift border border-gray-100 dark:border-gray-700"
+              >
+                <div className="mb-4 text-blue-600 bg-blue-50 dark:bg-blue-900/30 p-3 rounded-full w-fit">
+                  {value.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">{value.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300">
+                  {value.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Decorative elements */}
+        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-600/10 rounded-full blur-3xl"></div>
+      </section>
+
+      {/* Managing Director */}
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-3xl font-bold mb-2">Managing Director <span className="text-blue-600">Speaks</span></h2>
+          </div>
+          
+          <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden animate-fade-in">
+            <div className="grid md:grid-cols-3 gap-0">
+              <div className="relative h-full min-h-[300px] md:min-h-full bg-blue-900">
+                <Image 
+                  src="https://gbcinfrastructure.in/material/front/assets/img/md.jpg"
+                  alt="Managing Director"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="md:col-span-2 p-8 md:p-10">
+                <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Mr. Bijay Chowdhury</h3>
+                <p className="text-gray-700 dark:text-gray-300 mb-4 italic">
+                  "At GBC Infrastructure, we are committed to excellence in every project we undertake. Our vision is to be the leading infrastructure company known for quality, innovation, and timely delivery."
+                </p>
+                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                  "We believe in building not just structures, but relationships based on trust and mutual respect. Our team's dedication and expertise enable us to deliver projects that exceed expectations and contribute to the development of our nation."
+                </p>
+                <p className="text-gray-700 dark:text-gray-300">
+                  "As we look to the future, we remain committed to sustainable practices, technological advancement, and the highest standards of professionalism in all our endeavors."
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Decorative elements */}
+        <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-600/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 -left-10 w-40 h-40 bg-indigo-600/10 rounded-full blur-3xl"></div>
+      </section>
+
+      {/* Our Team */}
+      <section className="py-16 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
+            <h2 className="text-3xl font-bold mb-6">Our <span className="text-blue-600">Team</span></h2>
+            <p className="text-gray-700 dark:text-gray-300">
+              G.B.C INFRASTRUCTURE PVT. LTD. CONSISTS OF A MOST ORGANIZED, COMPACT CONSTRUCTING AGENCY AND SINCE INCEPTION THEY ARE ENGAGED IN EXECUTION OF WORKS WITH THE MANAGEMENT THAT IS EXTREMELY HIGHLY DEVELOPMENT POTENTIAL TO BUILD HOMES.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto stagger-children">
+            {[
+              {
+                image: "https://gbcinfrastructure.in/material/front/assets/img/team/bijay.jpg",
+                name: "MR. BIJAY CHOWDHURY",
+                position: "CEO"
+              },
+              {
+                image: "https://gbcinfrastructure.in/material/front/assets/img/team/poulami.jpg",
+                name: "MRS. POULAMI GHOSHAL",
+                position: "Director Finance"
+              },
+              {
+                image: "https://gbcinfrastructure.in/material/front/assets/img/team/bhaskar.jpg",
+                name: "MR. BHASKAR KUMAR",
+                position: "COO - Projects"
+              }
+            ].map((member, index) => (
+              <div 
+                key={index}
+                className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden animate-fade-in hover-lift border border-gray-100 dark:border-gray-700"
+              >
+                <div className="relative h-64 w-full">
+                  <Image 
+                    src={member.image}
+                    alt={member.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6 text-center">
+                  <h3 className="text-lg font-bold mb-1 text-gray-900 dark:text-white">{member.position}</h3>
+                  <p className="text-blue-600 font-medium">{member.name}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Decorative elements */}
+        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-600/10 rounded-full blur-3xl"></div>
+      </section>
+
+      <CorporatePolicies />
+
+      {/* CTA Section */}
+      <section className="relative py-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-700"></div>
+        <div className="absolute inset-0 bg-grid-pattern-dark opacity-20"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 animate-fade-in">
+              Ready to Start Your Next Project?
+            </h2>
+            <p className="text-xl text-blue-100 mb-8 animate-fade-in">
+              Contact us today to discuss how GBC Infrastructure can bring your vision to life.
+            </p>
+            <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-blue-50 animate-fade-in">
+              <Link href="/contact">Get in Touch</Link>
+            </Button>
+          </div>
+        </div>
+        
+        {/* Decorative elements */}
+        <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-10 -left-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+      </section>
+    </main>
+  );
+} 
