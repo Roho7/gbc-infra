@@ -1,7 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Award, Building, Users, Target } from "lucide-react";
 import CorporatePolicies from "./_components/CorporatePolicies";
 import CTA from "@/components/CTA";
