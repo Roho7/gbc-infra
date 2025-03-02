@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { Menu, Settings2Icon, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -39,10 +39,10 @@ const Navbar = () => {
   };
 
   return (
-    <header 
+    <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        scrolled 
-          ? "bg-white/95 dark:bg-gray-900/95 shadow-md backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-900/60" 
+        scrolled
+          ? "bg-white/95 dark:bg-gray-900/95 shadow-md backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-gray-900/60"
           : "bg-transparent"
       }`}
     >
@@ -56,7 +56,13 @@ const Navbar = () => {
               height={40}
               className="h-10 w-auto"
             />
-            <span className={`hidden font-bold sm:inline-block text-xl ${scrolled ? 'text-gray-900 dark:text-white' : 'text-gray-900 dark:text-white'}`}>
+            <span
+              className={`hidden font-bold sm:inline-block text-xl ${
+                scrolled
+                  ? "text-gray-900 dark:text-white"
+                  : "text-gray-900 dark:text-white"
+              }`}
+            >
               GBC Infrastructure
             </span>
           </Link>
@@ -68,13 +74,25 @@ const Navbar = () => {
             <NavigationMenuList>
               <NavigationMenuItem>
                 <Link href="/" legacyBehavior passHref>
-                  <NavigationMenuLink className={`${navigationMenuTriggerStyle()} ${scrolled ? 'text-gray-900 dark:text-white' : 'text-gray-900 dark:text-white'}`}>
+                  <NavigationMenuLink
+                    className={`${navigationMenuTriggerStyle()} ${
+                      scrolled
+                        ? "text-gray-900 dark:text-white"
+                        : "text-gray-900 dark:text-white"
+                    }`}
+                  >
                     Home
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className={scrolled ? 'text-gray-900 dark:text-white' : 'text-gray-900 dark:text-white'}>
+                <NavigationMenuTrigger
+                  className={
+                    scrolled
+                      ? "text-gray-900 dark:text-white"
+                      : "text-gray-900 dark:text-white"
+                  }
+                >
                   About
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
@@ -92,10 +110,10 @@ const Navbar = () => {
                             Learn about our company, mission, and values
                           </p>
                           <Image
-                          src="https://gbcinfrastructure.in/material/front/assets/img/banner-new-3.jpg"
-                          fill
-                          alt='gbc'
-                          className="absolute z-0 duration-100"
+                            src="https://gbcinfrastructure.in/material/front/assets/img/banner-new-3.jpg"
+                            fill
+                            alt="gbc"
+                            className="absolute z-0 duration-100"
                           />
                           <div className="z-1 inset-0 absolute bg-gradient-to-br from-blue-50 group-hover:from-transparent to-blue-200 dark:from-blue-900 dark:to-blue-900 transition-colors"></div>
                         </a>
@@ -129,34 +147,71 @@ const Navbar = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger className={scrolled ? 'text-gray-900 dark:text-white' : 'text-gray-900 dark:text-white'}>
+                <NavigationMenuTrigger
+                  className={
+                    scrolled
+                      ? "text-gray-900 dark:text-white"
+                      : "text-gray-900 dark:text-white"
+                  }
+                >
                   Services
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                    {services.map((service) => (
-                      <li key={service.title}>
-                        <NavigationMenuLink asChild>
-                          <a
-                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-blue-50 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-300 focus:bg-blue-50 dark:focus:bg-blue-900 focus:text-blue-600 dark:focus:text-blue-300"
-                            href={service.href}
-                          >
-                            <div className="text-sm font-medium leading-none">
-                              {service.title}
-                            </div>
-                            <p className="line-clamp-2 text-sm leading-snug text-gray-600 dark:text-gray-400">
-                              {service.description}
-                            </p>
-                          </a>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
+                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[500px]">
+                    <li className="row-span-3">
+                      <NavigationMenuLink asChild>
+                        <a
+                          className="overflow-hidden relative flex h-full w-full select-none flex-col justify-end rounded-md  p-6 no-underline outline-none focus:shadow-md group"
+                          href="/process"
+                        >
+                          <div className="mb-2 mt-4 text-lg font-medium text-blue-600 dark:text-blue-300 group-hover:text-blue-50 z-10">
+                            <Settings2Icon className="w-6 h-6" />
+                            Our Process
+                          </div>
+                          <p className="text-sm leading-tight text-gray-600 dark:text-gray-300 group-hover:text-gray-100 z-10">
+                            Learn about our process
+                          </p>
+                          <Image
+                            src="https://gbcinfrastructure.in/material/front/assets/img/banner-new-3.jpg"
+                            fill
+                            alt="gbc"
+                            className="absolute z-0 duration-100"
+                          />
+                          <div className="z-1 inset-0 absolute bg-gradient-to-br from-blue-50 group-hover:from-transparent to-blue-200 dark:from-blue-900 dark:to-blue-900 transition-colors"></div>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                    <>
+                      {services.map((service) => (
+                        <li key={service.title}>
+                          <NavigationMenuLink asChild>
+                            <a
+                              className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-blue-50 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-300 focus:bg-blue-50 dark:focus:bg-blue-900 focus:text-blue-600 dark:focus:text-blue-300"
+                              href={service.href}
+                            >
+                              <div className="text-sm font-medium leading-none">
+                                {service.title}
+                              </div>
+                              <p className="line-clamp-2 text-sm leading-snug text-gray-600 dark:text-gray-400">
+                                {service.description}
+                              </p>
+                            </a>
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <Link href="/projects" legacyBehavior passHref>
-                  <NavigationMenuLink className={`${navigationMenuTriggerStyle()} ${scrolled ? 'text-gray-900 dark:text-white' : 'text-gray-900 dark:text-white'}`}>
+                  <NavigationMenuLink
+                    className={`${navigationMenuTriggerStyle()} ${
+                      scrolled
+                        ? "text-gray-900 dark:text-white"
+                        : "text-gray-900 dark:text-white"
+                    }`}
+                  >
                     Projects
                   </NavigationMenuLink>
                 </Link>
@@ -179,7 +234,11 @@ const Navbar = () => {
             size="icon"
             aria-label="Toggle Menu"
             onClick={toggleMenu}
-            className={scrolled ? 'text-gray-900 dark:text-white' : 'text-gray-900 dark:text-white'}
+            className={
+              scrolled
+                ? "text-gray-900 dark:text-white"
+                : "text-gray-900 dark:text-white"
+            }
           >
             {isMenuOpen ? (
               <X className="h-6 w-6" />
@@ -261,18 +320,6 @@ const services = [
       "Building sustainable infrastructure for communities and businesses",
     href: "/services/infrastructure-development",
   },
-  {
-    title: "Civil Engineering",
-    description:
-      "Comprehensive civil engineering services for complex projects",
-    href: "/services/civil-engineering",
-  },
-  {
-    title: "Project Planning",
-    description:
-      "Strategic planning and feasibility studies for construction projects",
-    href: "/services/project-planning",
-  },
 ];
 
-export default Navbar; 
+export default Navbar;

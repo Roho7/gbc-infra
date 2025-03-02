@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Award, Building, Users, Target } from "lucide-react";
 import CorporatePolicies from "./_components/CorporatePolicies";
+import CTA from "@/components/CTA";
 
 export default function AboutPage() {
   return (
@@ -217,28 +218,7 @@ export default function AboutPage() {
       <CorporatePolicies />
 
       {/* CTA Section */}
-      <section className="relative py-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-700"></div>
-        <div className="absolute inset-0 bg-grid-pattern-dark opacity-20"></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 animate-fade-in">
-              Ready to Start Your Next Project?
-            </h2>
-            <p className="text-xl text-blue-100 mb-8 animate-fade-in">
-              Contact us today to discuss how GBC Infrastructure can bring your vision to life.
-            </p>
-            <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-blue-50 animate-fade-in">
-              <Link href="/contact">Get in Touch</Link>
-            </Button>
-          </div>
-        </div>
-        
-        {/* Decorative elements */}
-        <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
-        <div className="absolute top-10 -left-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
-      </section>
+      <CTA />
     </main>
   );
 } 
