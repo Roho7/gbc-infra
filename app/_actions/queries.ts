@@ -1,7 +1,7 @@
 // Example query in your Next.js page
 
-import { defineQuery, groq } from "next-sanity"
-import { client, fetchSanity, urlFor } from "./sanity"
+import { groq } from "next-sanity"
+import { client, fetchSanity, } from "./sanity"
 
 // Define TypeScript interfaces for your Sanity data
 export interface SanityImage {
