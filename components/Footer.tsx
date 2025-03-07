@@ -6,7 +6,7 @@ import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "luc
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-200">
-      <div className="container py-12 md:py-16">
+      <div className="py-12 md:py-16 px-2">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Company Info */}
           <div>

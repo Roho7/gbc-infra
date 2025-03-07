@@ -3,8 +3,12 @@ import Image from "next/image";
 import { Award, Building, Users, Target } from "lucide-react";
 import CorporatePolicies from "./_components/CorporatePolicies";
 import CTA from "@/components/CTA";
+import { getAboutPageImages } from "../_actions/queries";
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const images = await getAboutPageImages();
+  
+  const headerImage = images.filter(image => image?.section === "header")[0]
   return (
     <main className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -12,8 +16,8 @@ export default function AboutPage() {
         {/* Background Image with Gradient Overlay */}
         <div className="absolute inset-0 z-0">
           <Image 
-            src="https://gbcinfrastructure.in/material/front/assets/img/banner-new-3.jpg"
-            alt="GBC Infrastructure"
+            src={headerImage.imageUrl}
+            alt={images && images.length > 0 ? images[0].alt : "GBC Infrastructure"}
             fill
             className="object-cover"
             priority
