@@ -28,6 +28,28 @@ export interface ImageType {
   // Add any other fields you need
 }
 
+export interface ProjectType {
+  _id: string;
+  title: string;
+  description: string;
+  mainImage: string;
+  categories: {_ref: string}[];
+  startedAt: string;
+  completedAt: string;
+}
+
+export interface CategoryType {
+  _id: string;
+  title: string;
+  description: string;
+}
+
+const categoriesQuery = groq`*[_type == "category"] {
+  _id,
+  title,
+  description
+}`;
+
 // Query for about page images
 const aboutPageImagesQuery = groq`*[_type == "picture" && route == "/about"] {
   title,
@@ -45,9 +67,6 @@ export async function getAboutPageImages(): Promise<ImageType[]> {
   return images
 }
 
-// Add more query functions as needed
-// For example:
-
 // Query for homepage content
 const homePageQuery = `*[_type == "page" && slug.current == "home"][0]{
   title,
@@ -60,6 +79,25 @@ const homePageQuery = `*[_type == "page" && slug.current == "home"][0]{
     "image": image.asset->url
   }
 }`
+
+
+const projectsQuery = groq`*[_type == "gbc-projects"] {
+  title,
+  description,
+  "mainImage": mainImage.asset->url,
+categories,
+  startedAt,
+  completedAt
+}| order(position asc)`;
+
+const imageQuery = (route?: string) => groq`*[_type == "gbc-pictures" ${route ? `&& route == "${route}"` : ""}] {
+  title,
+  alt,
+  caption,
+  "imageUrl": image.asset->url,
+  "dimensions": image.asset->metadata.dimensions,
+  section
+}`;
 
 // Interface for homepage data
 export interface HomePageData {
@@ -79,3 +117,14 @@ export async function getHomePageData(): Promise<HomePageData> {
   return await fetchSanity<HomePageData>(homePageQuery)
 }
   
+export async function getProjects(): Promise<ProjectType[]>{
+  return await client.fetch<ProjectType[]>(projectsQuery)
+}
+
+export async function getCategories(): Promise<CategoryType[]> {
+  return await client.fetch<CategoryType[]>(categoriesQuery);
+}
+
+export async function getImages(route?: string): Promise<ImageType[]> {
+  return await client.fetch<ImageType[]>(imageQuery(route));
+}

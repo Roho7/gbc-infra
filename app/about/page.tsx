@@ -1,27 +1,63 @@
-import React from "react";
+'use client'
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import { Award, Building, Users, Target } from "lucide-react";
 import CorporatePolicies from "./_components/CorporatePolicies";
 import CTA from "@/components/CTA";
 import { getAboutPageImages } from "../_actions/queries";
 
-export default async function AboutPage() {
-  const images = await getAboutPageImages();
+export default function AboutPage() {
+  const searchParams = useSearchParams();
+  const teamSectionRef = useRef<HTMLElement>(null);
+  const [headerImage, setHeaderImage] = React.useState<any>(null);
   
-  const headerImage = images.filter(image => image?.section === "header")[0]
+  useEffect(() => {
+    // Fetch images
+    const fetchImages = async () => {
+      const fetchedImages = await getAboutPageImages();
+      
+      const header = fetchedImages.filter(image => image?.section === "header")[0];
+      setHeaderImage(header);
+    };
+    
+    fetchImages();
+  }, []);
+  
+  useEffect(() => {
+    // Check if we need to scroll to the team section
+    const section = searchParams.get('section');
+    
+    if (section === 'team' && teamSectionRef.current) {
+      // Add a small delay to ensure the page is fully loaded
+      setTimeout(() => {
+        teamSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    }
+    
+    // Also handle direct hash navigation (#team)
+    if (window.location.hash === '#team' && teamSectionRef.current) {
+      setTimeout(() => {
+        teamSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    }
+  }, [searchParams, teamSectionRef]);
+
   return (
     <main className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         {/* Background Image with Gradient Overlay */}
         <div className="absolute inset-0 z-0">
-          <Image 
-            src={headerImage.imageUrl}
-            alt={images && images.length > 0 ? images[0].alt : "GBC Infrastructure"}
-            fill
-            className="object-cover"
-            priority
-          />
+          {headerImage && (
+            <Image 
+              src={headerImage.imageUrl}
+              alt={headerImage.alt || "GBC Infrastructure"}
+              fill
+              className="object-cover"
+              priority
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/70 to-transparent"></div>
         </div>
         
@@ -164,8 +200,8 @@ export default async function AboutPage() {
         <div className="absolute inset-0 bg-grid-pattern-light opacity-50 -z-10"></div>
       </section>
 
-      {/* Our Team */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+      {/* Our Team - Added ref for scrolling */}
+      <section ref={teamSectionRef} id="team" className="py-16 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in">
             <h2 className="text-3xl font-bold mb-6">Our <span className="text-blue-600">Team</span></h2>

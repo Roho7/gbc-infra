@@ -120,7 +120,7 @@ const Navbar = () => {
                       </NavigationMenuLink>
                     </li>
                     <li>
-                      <Link href="/team" legacyBehavior passHref>
+                      <Link href="/about#team" legacyBehavior passHref>
                         <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-blue-50 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-300 focus:bg-blue-50 dark:focus:bg-blue-900/20 focus:text-blue-600 dark:focus:text-blue-300">
                           <div className="text-sm font-medium leading-none">
                             Our Team

@@ -5,30 +5,11 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
-
-const projects = [
-  {
-    title: "Urban Highway Expansion",
-    category: "Infrastructure",
-    image: "/project1.jpg",
-    link: "/projects/urban-highway-expansion",
-  },
-  {
-    title: "Commercial Complex",
-    category: "Construction",
-    image: "/project2.jpg",
-    link: "/projects/commercial-complex",
-  },
-  {
-    title: "Municipal Water Treatment",
-    category: "Civil Engineering",
-    image: "/project3.jpg",
-    link: "/projects/municipal-water-treatment",
-  },
-];
+import { useData } from "@/app/_hooks/useData";
 
 const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { projects } = useData();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,6 +32,7 @@ const Projects = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
 
   return (
     <section id="projects-section" className="relative py-20 overflow-hidden px-8 bg-gradient-to-b from-slate-800 to-slate-900">
@@ -127,13 +109,13 @@ const Projects = () => {
               transition={{ duration: 0.6, delay: index * 0.2 }}
               whileHover={{ y: -10, transition: { duration: 0.3 } }}
             >
-              <Link
-                href={project.link}
+              {/* <Link
+                href={`/projects/${project._id}`}
                 className="group block overflow-hidden rounded-lg shadow-lg transition-all"
-              >
+              > */}
                 <div className="relative h-64 w-full overflow-hidden">
                   <Image
-                    src={project.image}
+                    src={project.mainImage}
                     alt={project.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -149,7 +131,7 @@ const Projects = () => {
                       className="mb-2 inline-block rounded-full bg-blue-600 px-3 py-1 text-xs font-medium"
                       whileHover={{ scale: 1.05 }}
                     >
-                      {project.category}
+                      {/* {project.categories[0]._ref} */}
                     </motion.span>
                     <h3 className="text-xl font-bold group-hover:text-blue-300 transition-colors">
                       {project.title}
@@ -161,7 +143,7 @@ const Projects = () => {
                     />
                   </div>
                 </div>
-              </Link>
+              {/* </Link> */}
             </motion.div>
           ))}
         </div>

@@ -42,10 +42,10 @@ const CTA = () => {
             key={i}
             className="absolute rounded-full bg-white/20"
             style={{
-              width: Math.random() * 8 + 2 + 'px',
-              height: Math.random() * 8 + 2 + 'px',
-              left: Math.random() * 100 + '%',
-              top: Math.random() * 100 + '%',
+              // width: Math.random() * 8 + 2 + 'px',
+              // height: Math.random() * 8 + 2 + 'px',
+              // left: Math.random() * 100 + '%',
+              // top: Math.random() * 100 + '%',
             }}
             animate={{
               y: [0, -100],
