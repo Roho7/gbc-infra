@@ -116,7 +116,7 @@ const Services = () => {
               <p className="text-gray-600 mb-6 flex-grow">
                 {service.description}
               </p>
-              <Link
+              {/* <Link
                 href={service.link}
                 className="group inline-flex items-center text-blue-600 font-medium"
               >
@@ -132,12 +132,12 @@ const Services = () => {
                 >
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </motion.span>
-              </Link>
+              </Link> */}
             </motion.div>
           ))}
         </div>
 
-        <motion.div 
+        {/* <motion.div 
           className="mt-16 text-center"
           initial={{ opacity: 0, y: 30 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -150,7 +150,7 @@ const Services = () => {
           >
             <Link href="/services">View All Services</Link>
           </Button>
-        </motion.div>
+        </motion.div> */}
       </div>
       
       {/* Decorative elements */}

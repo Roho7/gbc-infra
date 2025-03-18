@@ -4,16 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
+import { useData } from "@/app/_hooks/useData";
 
-const images = [
-  "https://gbcinfrastructure.in/material/front/assets/img/banner-new-3.jpg",
-  "https://gbcinfrastructure.in/material/front/assets/img/banner-new-4.jpg",
-  "https://gbcinfrastructure.in/material/front/assets/img/banner-new-3.jpg",
-  "https://gbcinfrastructure.in/material/front/assets/img/banner-new-4.jpg",
-];
+
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { allImages } = useData();
 
   useEffect(() => {
     setIsVisible(true);
@@ -110,7 +107,7 @@ const Hero = () => {
                   ease: "linear"
                 }}
               >
-                {images.map((src, index) => (
+                {allImages.map((img, index) => (
                   <motion.div 
                     key={`col1-${index}`} 
                     className="relative w-full h-[200px] rounded-lg overflow-hidden shadow-md"
@@ -118,7 +115,7 @@ const Hero = () => {
                     transition={{ duration: 0.3 }}
                   >
                     <Image
-                      src={src}
+                      src={img.imageUrl}
                       alt={`GBC Infrastructure Project ${index + 1}`}
                       fill
                       className="object-cover"
@@ -141,7 +138,7 @@ const Hero = () => {
                   ease: "linear",
                 }}
               >
-                {images.map((src, index) => (
+                {allImages.map((img, index) => (
                   <motion.div 
                     key={`col1-dup-${index}`} 
                     className="relative w-full h-[200px] rounded-lg overflow-hidden shadow-md"
@@ -149,7 +146,7 @@ const Hero = () => {
                     transition={{ duration: 0.3 }}
                   >
                     <Image
-                      src={src}
+                      src={img.imageUrl}
                       alt={`GBC Infrastructure Project ${index + 1}`}
                       fill
                       className="object-cover"
@@ -172,7 +169,7 @@ const Hero = () => {
                   ease: "linear"
                 }}
               >
-                {[...images].reverse().map((src, index) => (
+                {[...allImages].reverse().map((img, index) => (
                   <motion.div 
                     key={`col2-${index}`} 
                     className="relative w-full h-[200px] rounded-lg overflow-hidden shadow-md"
@@ -180,7 +177,7 @@ const Hero = () => {
                     transition={{ duration: 0.3 }}
                   >
                     <Image
-                      src={src}
+                      src={img.imageUrl}
                       alt={`GBC Infrastructure Project ${index + 1}`}
                       fill
                       className="object-cover"
@@ -203,7 +200,7 @@ const Hero = () => {
                   ease: "linear"
                 }}
               >
-                {[...images].reverse().map((src, index) => (
+                {[...allImages].reverse().map((img, index) => (
                   <motion.div 
                     key={`col2-dup-${index}`} 
                     className="relative w-full h-[200px] rounded-lg overflow-hidden shadow-md"
@@ -211,7 +208,7 @@ const Hero = () => {
                     transition={{ duration: 0.3 }}
                   >
                     <Image
-                      src={src}
+                      src={img.imageUrl}
                       alt={`GBC Infrastructure Project ${index + 1}`}
                       fill
                       className="object-cover"

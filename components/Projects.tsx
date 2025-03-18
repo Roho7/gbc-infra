@@ -9,7 +9,7 @@ import { useData } from "@/app/_hooks/useData";
 
 const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const { projects } = useData();
+  const { projects, categories } = useData();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -101,7 +101,7 @@ const Projects = () => {
         </motion.div>
 
         <div className="grid gap-8 md:grid-cols-3">
-          {projects.map((project, index) => (
+          {projects.slice(0, 3).map((project, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 50 }}
@@ -127,12 +127,11 @@ const Projects = () => {
                     }}
                   />
                   <div className="absolute bottom-0 left-0 p-6 text-white">
-                    <motion.span 
-                      className="mb-2 inline-block rounded-full bg-blue-600 px-3 py-1 text-xs font-medium"
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      {/* {project.categories[0]._ref} */}
-                    </motion.span>
+                      {project.categories && project.categories.map((category) => (
+                        <span key={category._ref} className="mb-2 inline-block rounded-full bg-blue-600 px-3 py-1 text-xs font-medium capitalize">
+                          {categories.find((c) => c._id === category._ref)?.title}
+                        </span>
+                      ))}
                     <h3 className="text-xl font-bold group-hover:text-blue-300 transition-colors">
                       {project.title}
                     </h3>

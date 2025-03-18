@@ -143,7 +143,7 @@ const CTA = () => {
                       repeatType: "loop",
                       ease: "easeInOut"
                     }}
-                    className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="ml-2 transition-opacity"
                   >
                     <ArrowRight className="h-4 w-4" />
                   </motion.span>
@@ -167,7 +167,7 @@ const CTA = () => {
                       repeatType: "loop",
                       ease: "easeInOut"
                     }}
-                    className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="ml-2 transition-opacity"
                   >
                     <ArrowRight className="h-4 w-4" />
                   </motion.span>

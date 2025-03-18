@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useState, useEffect, ReactNode, useMemo } from 'react';
-import { CategoryType, getCategories, getProjects, ProjectType } from '@/app/_actions/queries';
+import { CategoryType, getCategories, getImages, getProjects, ImageType, ProjectType } from '@/app/_actions/queries';
 
 // Define the shape of our context
 interface DataContextType {
@@ -9,6 +9,7 @@ interface DataContextType {
   categories: CategoryType[];
   isLoading: boolean;
   error: Error | null;
+  allImages: ImageType[];
 }
 
 // Create the context with default values
@@ -17,6 +18,7 @@ const DataContext = createContext<DataContextType>({
   categories: [],
   isLoading: false,
   error: null,
+  allImages: [],
 });
 
 // Provider component
@@ -25,6 +27,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error | null>(null);
   const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [allImages, setAllImages] = useState<ImageType[]>([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -32,15 +35,14 @@ export function DataProvider({ children }: { children: ReactNode }) {
         setIsLoading(true);
         const projectData = await getProjects();
         const categoryData = await getCategories();
+        const imageData = await getImages();
         setProjects(projectData);
         setCategories(categoryData);
+        setAllImages(imageData);
       } catch (err) {
         setError(err instanceof Error ? err : new Error('An unknown error occurred'));
       } finally {
         setIsLoading(false);
-        console.log('Data fetched');
-        console.log(projects);
-        console.log(categories);
       }
     }
 
@@ -53,8 +55,9 @@ export function DataProvider({ children }: { children: ReactNode }) {
     projects,
     categories,
     isLoading,
-    error
-  }), [projects, categories, isLoading, error]);
+    error,
+    allImages
+  }), [projects, categories, isLoading, error, allImages]);
 
   return (
     <DataContext.Provider value={values}>

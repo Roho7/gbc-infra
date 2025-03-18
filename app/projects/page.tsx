@@ -56,19 +56,23 @@ export default function ProjectsPage() {
     setSearchQuery(e.target.value);
   };
 
+  const headerImage = useMemo(() => {
+    return projectImages.find(image => image.section === "header")?.imageUrl;
+  }, [projectImages]);
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         {/* Background Image with Gradient Overlay */}
         <div className="absolute inset-0 z-0">
-          <Image 
-            src={projectImages.find(image => image.section === "header")?.imageUrl || ''}
-            alt={projectImages.find(image => image.section === "header")?.alt || ''}
+          {headerImage && <Image 
+            src={headerImage}
+            alt="GBC Infrastructure Projects"
             fill
             className="object-cover"
             priority
-          />
+          />}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/70 to-transparent"></div>
         </div>
         
@@ -78,7 +82,7 @@ export default function ProjectsPage() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
-              About <span className="text-blue-400">GBC Infrastructure</span>
+              Our <span className="text-blue-400">Projects</span>
             </h1>
             <p className="text-xl text-blue-100 mb-8 max-w-2xl animate-fade-in">
               Building excellence through innovation, quality, and commitment since 2012
@@ -94,7 +98,7 @@ export default function ProjectsPage() {
             {/* Water Plants Stat */}
             <div className="bg-white p-8 rounded-xl border border-gray-200 hover:border-blue-500 transition-all shadow-lg hover:shadow-blue-500/20">
               <h2 className="text-5xl font-bold text-blue-600 mb-4">32</h2>
-              <h3 className="text-xl font-bold text-gray-800 uppercase mb-3">WATER PLANTS</h3>
+              <h3 className="text-xl font-bold text-gray-800 uppercase mb-3">WATER TREATMENT PLANTS</h3>
               <p className="text-gray-600">
                 Water in the water treatment plant is treated through physical processes for example filtration or settling and chemical processes such as coagulation and disinfection.
               </p>
@@ -149,7 +153,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* Filter and Search Section */}
-      <section className="py-12 px-8">
+      <section className="py-4 px-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
             {/* Category Filters */}
@@ -191,11 +195,11 @@ export default function ProjectsPage() {
       </section>
 
       {/* Project Gallery */}
-      <section id="project-gallery" className="py-12 px-8 pb-32">
+      <section id="project-gallery" className="px-8 pb-32">
         <div className="max-w-7xl mx-auto">
           {isLoading ? (
             <div className="flex justify-center items-center h-64">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+              <div key={Math.random() * 10} className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
             </div>
           ) : error ? (
             <div className="text-center text-red-500 p-8 bg-red-100/10 rounded-lg">
@@ -211,7 +215,7 @@ export default function ProjectsPage() {
                   >
                     <div className="relative h-64 w-full overflow-hidden">
                       <Image
-                        src={project.mainImage || "/placeholder-project.jpg"}
+                        src={project.mainImage || ""}
                         alt={project.title}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-110"

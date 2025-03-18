@@ -82,6 +82,7 @@ const homePageQuery = `*[_type == "page" && slug.current == "home"][0]{
 
 
 const projectsQuery = groq`*[_type == "gbc-projects"] {
+  _id,
   title,
   description,
   "mainImage": mainImage.asset->url,
