@@ -1,12 +1,11 @@
-import React from "react";
-import Link from "next/link";
+import { Facebook, Linkedin, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react";
 import Image from "next/image";
-import { Facebook, Youtube, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
+import Link from "next/link";
 
 const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-200">
-      <div className="py-12 md:py-16 px-2">
+      <div className="py-12 md:py-16 px-8">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Company Info */}
           <div>
@@ -21,8 +20,7 @@ const Footer = () => {
               <span className="font-bold text-xl text-white">GBC Infrastructure</span>
             </Link>
             <p className="text-gray-400 mb-6">
-              Building tomorrow&apos;s infrastructure with innovation, quality, and
-              sustainability.
+              Cutting edge water treatment and infrastructure solutions.
             </p>
             <div className="flex space-x-4">
               <a
@@ -100,14 +98,14 @@ const Footer = () => {
                   Our Team
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="/careers"
                   className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   Careers
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link
                   href="/contact"

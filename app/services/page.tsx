@@ -54,7 +54,7 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <PageHeader 
         title="Our Services" 
-        description="Comprehensive infrastructure solutions for water management and treatment." 
+        description="Water management and treatment infrastructure solutions." 
         image={headerImage?.imageUrl} 
       />
 

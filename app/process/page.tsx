@@ -39,8 +39,8 @@ export default function ProcessPage() {
             {[
               {
                 icon: <ClipboardList className="h-10 w-10" />,
-                title: "Intake Process",
-                id: "intake-process",
+                title: "Pre-Process",
+                id: "pre-process",
                 description: "Initial consultation and requirement gathering to understand project scope, objectives, and constraints."
               },
               {
@@ -63,16 +63,16 @@ export default function ProcessPage() {
               },
               {
                 icon: <CheckCircle className="h-10 w-10" />,
-                title: "Quality Assurance",
-                id: "quality-assurance",
-                description: "Rigorous quality control measures throughout the project lifecycle to ensure compliance with standards."
-              },
-              {
-                icon: <Clock className="h-10 w-10" />,
                 title: "Project Completion",
                 id: "project-completion",
                 description: "Final inspections, documentation, and handover of the completed infrastructure project."
-              }
+              },
+              {
+                icon: <Clock className="h-10 w-10" />,
+                title: "Maintenance",
+                id: "maintenance",
+                description: "Regular maintenance and upkeep to ensure the infrastructure remains in good working condition."
+              },
             ].map((step, index) => (
               <div 
                 key={index}

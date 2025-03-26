@@ -1,10 +1,10 @@
 'use client'
-import React, { useEffect, useState } from "react";
+import { useData } from "@/app/_hooks/useData";
+import { Button } from "@/components/ui/button";
+import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "motion/react";
-import { Button } from "@/components/ui/button";
-import { useData } from "@/app/_hooks/useData";
+import { useEffect, useState } from "react";
 
 
 
@@ -15,6 +15,8 @@ const Hero = () => {
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  console.log(allImages.length)
 
   return (
     <section className="relative overflow-hidden bg-background px-2">
@@ -51,9 +53,9 @@ const Hero = () => {
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Delivering Clean {" "}
+              Advanced and Affordable {" "}
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              Water Solutions
+              Water Infrastructure
               </span>{" "}
             </motion.h1>
             <motion.p 
@@ -105,7 +107,7 @@ const Hero = () => {
                   ease: "linear"
                 }}
               >
-                {allImages.map((img, index) => (
+                {allImages.slice(0, 5).map((img, index) => (
                   <motion.div 
                     key={`col1-${index}`} 
                     className="relative w-full h-[200px] rounded-lg overflow-hidden shadow-md"
@@ -136,7 +138,7 @@ const Hero = () => {
                   ease: "linear",
                 }}
               >
-                {allImages.map((img, index) => (
+                {allImages.slice(0, 5).map((img, index) => (
                   <motion.div 
                     key={`col1-dup-${index}`} 
                     className="relative w-full h-[200px] rounded-lg overflow-hidden shadow-md"
@@ -167,7 +169,7 @@ const Hero = () => {
                   ease: "linear"
                 }}
               >
-                {[...allImages].reverse().map((img, index) => (
+                {allImages.slice(5, 10).reverse().map((img, index) => (
                   <motion.div 
                     key={`col2-${index}`} 
                     className="relative w-full h-[200px] rounded-lg overflow-hidden shadow-md"
@@ -198,7 +200,7 @@ const Hero = () => {
                   ease: "linear"
                 }}
               >
-                {[...allImages].reverse().map((img, index) => (
+                {allImages.slice(5, 10).reverse().map((img, index) => (
                   <motion.div 
                     key={`col2-dup-${index}`} 
                     className="relative w-full h-[200px] rounded-lg overflow-hidden shadow-md"

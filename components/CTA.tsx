@@ -1,9 +1,9 @@
 'use client'
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
+import { motion } from "motion/react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const CTA = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -109,7 +109,7 @@ const CTA = () => {
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Ready to Start Your Next Infrastructure Project?
+            Need a partner for your next project?
           </motion.h2>
           <motion.p 
             className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto"
@@ -117,8 +117,8 @@ const CTA = () => {
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            Contact us today to discuss how GBC Infrastructure can help bring
-            your vision to life with our expertise and commitment to excellence.
+            Contact us today to discuss how GBC Infrastructure 
+            can help construct your next big project.
           </motion.p>
           <motion.div 
             className="flex flex-col sm:flex-row gap-4 justify-center"

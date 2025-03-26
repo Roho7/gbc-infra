@@ -30,7 +30,7 @@ const services = [
 const Services = () => {
   const router = useRouter();
   return (
-    <section id="services-section" className="relative py-20 overflow-hidden">
+    <section id="services-section" className="relative py-20 overflow-hidden px-4 md:px-0">
       {/* Background styling */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-gray-100"></div>
       
