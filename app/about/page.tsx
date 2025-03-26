@@ -1,12 +1,12 @@
 'use client'
-import React, { useEffect, useMemo, useRef } from "react";
+import CTA from "@/components/CTA";
+import { Award, Building, Target, Users } from "lucide-react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { Award, Building, Users, Target } from "lucide-react";
-import CorporatePolicies from "./_components/CorporatePolicies";
-import CTA from "@/components/CTA";
+import React, { useEffect, useMemo, useRef } from "react";
 import { getImages, ImageType } from "../_actions/queries";
 import PageHeader from "../_components/page-header";
+import CorporatePolicies from "./_components/CorporatePolicies";
 
 export default function AboutPage() {
   const searchParams = useSearchParams();
@@ -193,7 +193,7 @@ export default function AboutPage() {
             {[
               {
                 image: "https://gbcinfrastructure.in/material/front/assets/img/team/bijay.jpg",
-                name: "MR. BIJAY CHOWDHURY",
+                name: "MR. RIJU GHOSHAL",
                 position: "CEO"
               },
               {
@@ -203,7 +203,7 @@ export default function AboutPage() {
               },
               {
                 image: "https://gbcinfrastructure.in/material/front/assets/img/team/bhaskar.jpg",
-                name: "MR. BHASKAR KUMAR",
+                name: "MR. BHISMADEB KONAR",
                 position: "COO - Projects"
               }
             ].map((member, index) => (

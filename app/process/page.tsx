@@ -9,11 +9,15 @@ import PageHeader from "../_components/page-header";
 import { useData } from "../_hooks/useData";
 
 export default function ProcessPage() {
-  const { allImages } = useData()
+  const { allImages, documents } = useData()
 
   const headerImage = useMemo(() => {
     return allImages.filter(image => image.section === "process").find(image => image.title === "header")?.imageUrl
   }, [allImages])
+
+  const processDocuments = useMemo(() => {
+    return documents.filter(document => document.category === "gbc-process")
+  }, [documents])
 
   return (
     <main className="flex flex-col min-h-screen">
@@ -36,31 +40,37 @@ export default function ProcessPage() {
               {
                 icon: <ClipboardList className="h-10 w-10" />,
                 title: "Intake Process",
+                id: "intake-process",
                 description: "Initial consultation and requirement gathering to understand project scope, objectives, and constraints."
               },
               {
                 icon: <Layers className="h-10 w-10" />,
                 title: "Design & Planning",
+                id: "design-planning",
                 description: "Detailed design development, engineering analysis, and comprehensive project planning."
               },
               {
                 icon: <BarChart3 className="h-10 w-10" />,
                 title: "Resource Allocation",
+                id: "resource-allocation",
                 description: "Strategic allocation of human resources, materials, and equipment to ensure optimal project execution."
               },
               {
                 icon: <Workflow className="h-10 w-10" />,
                 title: "Implementation",
+                id: "implementation",
                 description: "Systematic execution of construction activities according to approved plans and specifications."
               },
               {
                 icon: <CheckCircle className="h-10 w-10" />,
                 title: "Quality Assurance",
+                id: "quality-assurance",
                 description: "Rigorous quality control measures throughout the project lifecycle to ensure compliance with standards."
               },
               {
                 icon: <Clock className="h-10 w-10" />,
                 title: "Project Completion",
+                id: "project-completion",
                 description: "Final inspections, documentation, and handover of the completed infrastructure project."
               }
             ].map((step, index) => (
@@ -112,7 +122,7 @@ export default function ProcessPage() {
                       We identify key stakeholders, define project objectives, and establish clear communication channels. This phase also includes initial budget estimations and timeline projections to set realistic expectations.
                     </p>
                     <Button className="mt-4" variant="outline" asChild>
-                      <Link href="#">Download Brochure</Link>
+                      <Link target="_blank" href={processDocuments.find(document => document.caption === "intake-process")?.url || "#"}>Download Brochure</Link>
                     </Button>
                   </div>
                 </div>
@@ -141,7 +151,7 @@ export default function ProcessPage() {
                       We consider factors such as water demand, seismic conditions, soil characteristics, and environmental impact in our designs. Each design undergoes rigorous review and validation before proceeding to the construction phase.
                     </p>
                     <Button className="mt-4" variant="outline" asChild>
-                      <Link href="#">Download Brochure</Link>
+                      <Link target="_blank" href={processDocuments.find(document => document.caption === "over-head-tank")?.url || "#"}>Download Brochure</Link>
                     </Button>
                   </div>
                 </div>
@@ -170,7 +180,7 @@ export default function ProcessPage() {
                       The process includes detailed engineering of treatment units, selection of appropriate equipment, construction of civil structures, installation of mechanical and electrical components, and comprehensive testing and commissioning procedures.
                     </p>
                     <Button className="mt-4" variant="outline" asChild>
-                      <Link href="#">Download Brochure</Link>
+                      <Link target="_blank" href={processDocuments.find(document => document.caption === "surface-water-treatment-plant")?.url || "#"}>Download Brochure</Link>
                     </Button>
                   </div>
                 </div>

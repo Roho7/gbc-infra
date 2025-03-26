@@ -18,6 +18,12 @@ export interface ImageDimensions {
   aspectRatio: number
 }
 
+export interface DocumentType {
+  title: string
+  category: string
+  url: string
+  caption: string
+}
 export interface ImageType {
   title: string
   alt: string
@@ -63,7 +69,6 @@ const aboutPageImagesQuery = groq`*[_type == "picture" && route == "/about"] {
 // Function to get about page images with proper typing
 export async function getAboutPageImages(): Promise<ImageType[]> {
   const images = await client.fetch<ImageType[]>(aboutPageImagesQuery)
-  console.log(images)
   return images
 }
 
@@ -100,6 +105,13 @@ const imageQuery = (route?: string) => groq`*[_type == "gbc-pictures" ${route ? 
   section
 }`;
 
+const documentsQuery = groq`*[_type == "documents"] {
+  title,
+  category,
+  "url": file.asset->url,
+  caption
+}`;
+
 // Interface for homepage data
 export interface HomePageData {
   title: string
@@ -128,4 +140,8 @@ export async function getCategories(): Promise<CategoryType[]> {
 
 export async function getImages(route?: string): Promise<ImageType[]> {
   return await client.fetch<ImageType[]>(imageQuery(route));
+}
+
+export async function getDocuments(): Promise<DocumentType[]> {
+  return await client.fetch<DocumentType[]>(documentsQuery);
 }
