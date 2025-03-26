@@ -1,41 +1,27 @@
-import React from "react";
-import Image from "next/image";
+'use client'
+import React, { useEffect, useState } from "react";
 import { Phone, Mail, MapPin, Send, User, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import PageHeader from "../_components/page-header";
+import { getImages, ImageType } from "../_actions/queries";
 
 export default function ContactPage() {
+  const [contactImages, setContactImages] = useState<ImageType[]>([]);
+
+  useEffect(() => {
+    const fetchHeaderImage = async () => {
+      const images = await getImages("/contact");
+      setContactImages(images);
+    };
+    fetchHeaderImage();
+  }, []);
+
   return (
     <main className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        {/* Background Image with Gradient Overlay */}
-        <div className="absolute inset-0 z-0">
-          <Image 
-            src="https://gbcinfrastructure.in/material/front/assets/img/banner-new-4.jpg"
-            alt="GBC Infrastructure Contact"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/70 to-transparent"></div>
-        </div>
-        
-        {/* Grid Pattern Overlay */}
-        <div className="absolute inset-0 bg-grid-pattern-dark opacity-20 z-0"></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
-              Contact <span className="text-blue-400">Us</span>
-            </h1>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl animate-fade-in">
-              Get in touch with our team to discuss your infrastructure needs and how we can help bring your projects to life.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader title="Contact Us" description="Get in touch with our team to discuss your infrastructure needs and how we can help bring your projects to life." image={contactImages.find(image => image.section === "header")?.imageUrl} />
 
       {/* Contact Information Section */}
       <section className="py-12 bg-white dark:bg-gray-900">

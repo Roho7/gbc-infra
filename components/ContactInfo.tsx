@@ -8,7 +8,7 @@ const ContactInfo = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-white">
             {/* Phone */}
-            <div className="flex items-center justify-center space-x-4">
+            <div className="flex items-center space-x-4  w-full">
               <div className="flex items-center justify-center w-16 h-16 rounded-full bg-blue-600/20 border border-blue-400/30">
                 <Phone className="h-6 w-6 text-blue-200" />
               </div>
@@ -19,7 +19,7 @@ const ContactInfo = () => {
             </div>
 
             {/* Email */}
-            <div className="flex items-center justify-center space-x-4">
+            <div className="flex items-center space-x-4">
               <div className="flex items-center justify-center w-16 h-16 rounded-full bg-blue-600/20 border border-blue-400/30">
                 <Mail className="h-6 w-6 text-blue-200" />
               </div>
@@ -30,7 +30,7 @@ const ContactInfo = () => {
             </div>
 
             {/* Address */}
-            <div className="flex items-center justify-center space-x-4">
+            <div className="flex items-center space-x-4">
               <div className="flex items-center justify-center w-16 h-16 rounded-full bg-blue-600/20 border border-blue-400/30">
                 <MapPin className="h-6 w-6 text-blue-200" />
               </div>

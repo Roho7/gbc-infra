@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
+import { Facebook, Youtube, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -12,7 +12,7 @@ const Footer = () => {
           <div>
             <Link href="/" className="flex items-center space-x-2 mb-6">
               <Image
-                src="/logo.png"
+                src="/gbc-white.png"
                 alt="GBC Infrastructure Logo"
                 width={40}
                 height={40}
@@ -26,7 +26,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://twitter.com"
+                href="https://x.com/gbcinfra"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-blue-400 transition-colors"
@@ -35,7 +35,7 @@ const Footer = () => {
                 <Twitter className="h-5 w-5" />
               </a>
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/gbcipltd"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-blue-600 transition-colors"
@@ -44,16 +44,16 @@ const Footer = () => {
                 <Facebook className="h-5 w-5" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.youtube.com/@gbcinfrastructurepvtltd1124"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-pink-500 transition-colors"
-                aria-label="Instagram"
+                className="text-gray-400 hover:text-red-500 transition-colors"
+                aria-label="YouTube"
               >
-                <Instagram className="h-5 w-5" />
+                <Youtube className="h-5 w-5" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/gbc-infrastructure-pvt-ltd/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-blue-500 transition-colors"
@@ -125,34 +125,34 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <Link
-                  href="/services/construction-management"
+                  href="/services"
                   className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
-                  Construction Management
+                  Raw Water Intake Jetty
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/services/infrastructure-development"
+                  href="/services"
                   className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
-                  Infrastructure Development
+                  Water Treatment Plants
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/services/civil-engineering"
+                  href="/services"
                   className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
-                  Civil Engineering
+                  Underground Reservoir
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/services/project-planning"
+                  href="/services"
                   className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
-                  Project Planning
+                  Pipelaying And Jack Pushing
                 </Link>
               </li>
             </ul>

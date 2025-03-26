@@ -1,12 +1,12 @@
 'use client'
-import React, { useState, useEffect, useMemo } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Filter, Search } from "lucide-react";
 import { useData } from "@/app/_hooks/useData";
-import { getImages, ImageType } from "../_actions/queries";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Filter, Search } from "lucide-react";
+import Image from "next/image";
+import React, { useEffect, useMemo, useState } from "react";
+import { getImages, ImageType } from "../_actions/queries";
+import PageHeader from "../_components/page-header";
 
 // Project categories for filtering
 
@@ -63,33 +63,7 @@ export default function ProjectsPage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        {/* Background Image with Gradient Overlay */}
-        <div className="absolute inset-0 z-0">
-          {headerImage && <Image 
-            src={headerImage}
-            alt="GBC Infrastructure Projects"
-            fill
-            className="object-cover"
-            priority
-          />}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/70 to-transparent"></div>
-        </div>
-        
-        {/* Grid Pattern Overlay */}
-        <div className="absolute inset-0 bg-grid-pattern-dark opacity-20 z-0"></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
-              Our <span className="text-blue-400">Projects</span>
-            </h1>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl animate-fade-in">
-              Building excellence through innovation, quality, and commitment since 2012
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader title="Our Projects" description="Explore our portfolio of completed and ongoing projects." image={headerImage} />
 
       {/* Stats Section from Screenshot */}
       <section className="py-16 px-8 bg-white">
@@ -236,16 +210,16 @@ export default function ProjectsPage() {
                       <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors mb-2">
                         {project.title}
                       </h3>
-                      <p className="text-slate-300 mb-4">
-                        {project.description || "No description available"}
-                      </p>
-                      <Link 
+                      {project.description && <p className="text-slate-300 mb-4">
+                        {project.description}
+                      </p>}
+                      {/* <Link 
                         href={`/projects/${project._id}`}
                         className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors"
                       >
                         View Details
                         <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
+                      </Link> */}
                     </div>
                   </div>
                 ))

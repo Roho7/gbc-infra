@@ -1,24 +1,32 @@
 'use client'
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { Award, Building, Users, Target } from "lucide-react";
 import CorporatePolicies from "./_components/CorporatePolicies";
 import CTA from "@/components/CTA";
-import { getAboutPageImages } from "../_actions/queries";
+import { getImages, ImageType } from "../_actions/queries";
+import PageHeader from "../_components/page-header";
 
 export default function AboutPage() {
   const searchParams = useSearchParams();
   const teamSectionRef = useRef<HTMLElement>(null);
-  const [headerImage, setHeaderImage] = React.useState<any>(null);
+  const [aboutImages, setAboutImages] = React.useState<ImageType[]>([]);
+
+  const headerImage = useMemo(() => {
+    return aboutImages.find(image => image.section === "header")?.imageUrl || '';
+  }, [aboutImages]);
+
+  const bodyImage = useMemo(() => {
+    return aboutImages.find(image => image.section === "body")?.imageUrl || '';
+  }, [aboutImages]);
   
   useEffect(() => {
     // Fetch images
     const fetchImages = async () => {
-      const fetchedImages = await getAboutPageImages();
+      const fetchedImages = await getImages('/about');
       
-      const header = fetchedImages.filter(image => image?.section === "header")[0];
-      setHeaderImage(header);
+      setAboutImages(fetchedImages);
     };
     
     fetchImages();
@@ -46,35 +54,7 @@ export default function AboutPage() {
   return (
     <main className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        {/* Background Image with Gradient Overlay */}
-        <div className="absolute inset-0 z-0">
-          {headerImage && (
-            <Image 
-              src={headerImage.imageUrl}
-              alt={headerImage.alt || "GBC Infrastructure"}
-              fill
-              className="object-cover"
-              priority
-            />
-          )}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/70 to-transparent"></div>
-        </div>
-        
-        {/* Grid Pattern Overlay */}
-        <div className="absolute inset-0 bg-grid-pattern-dark opacity-20 z-0"></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
-              About <span className="text-blue-400">GBC Infrastructure</span>
-            </h1>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl animate-fade-in">
-              Building excellence through innovation, quality, and commitment since 2012
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader title="About Us" description="Learn about our company and our mission." image={headerImage} />
 
       {/* Company Overview */}
       <section className="py-16 md:py-24 relative overflow-hidden">
@@ -94,13 +74,12 @@ export default function AboutPage() {
             </div>
             
             <div className="relative rounded-lg overflow-hidden shadow-xl h-[400px] animate-fade-in">
-              <Image 
-                src="https://gbcinfrastructure.in/material/front/assets/img/banner-new-3.jpg"
+              {bodyImage && <Image 
+                src={bodyImage}
                 alt="GBC Infrastructure Facility"
                 fill
                 className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent"></div>
+              />}
             </div>
           </div>
         </div>

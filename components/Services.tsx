@@ -1,9 +1,7 @@
 'use client'
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { ArrowRight, Factory, HardHat, Warehouse } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Factory, HardHat, Warehouse } from "lucide-react";
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 
 const services = [
   {
@@ -88,7 +86,7 @@ const Services = () => {
             Our <span className="text-blue-600">Services</span>
           </h2>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            We offer a comprehensive range of infrastructure and construction
+            We offer a range of infrastructure and construction
             services to meet your project needs.
           </p>
         </motion.div>

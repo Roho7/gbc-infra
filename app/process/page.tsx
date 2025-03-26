@@ -1,41 +1,24 @@
-import React from "react";
+'use client'
+import CTA from "@/components/CTA";
+import { Button } from "@/components/ui/button";
+import { BarChart3, CheckCircle, ClipboardList, Clock, Layers, Workflow } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { ClipboardList, Clock, CheckCircle, BarChart3, Workflow, Layers } from "lucide-react";
-import CTA from "@/components/CTA";
+import { useMemo } from "react";
+import PageHeader from "../_components/page-header";
+import { useData } from "../_hooks/useData";
 
 export default function ProcessPage() {
+  const { allImages } = useData()
+
+  const headerImage = useMemo(() => {
+    return allImages.filter(image => image.section === "process").find(image => image.title === "header")?.imageUrl
+  }, [allImages])
+
   return (
     <main className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        {/* Background Image with Gradient Overlay */}
-        <div className="absolute inset-0 z-0">
-          <Image 
-            src="https://gbcinfrastructure.in/material/front/assets/img/banner-new-3.jpg"
-            alt="GBC Infrastructure Project Process"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-900/70 to-transparent"></div>
-        </div>
-        
-        {/* Grid Pattern Overlay */}
-        <div className="absolute inset-0 bg-grid-pattern-dark opacity-20 z-0"></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
-              Our Project <span className="text-blue-400">Process</span>
-            </h1>
-            <p className="text-xl text-blue-100 mb-8 max-w-2xl animate-fade-in">
-              Delivering excellence through a structured and efficient approach to infrastructure development
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageHeader title="Our Process" description="Learn about our project management process." image={headerImage} />
 
 
       {/* Process Steps */}
@@ -110,12 +93,12 @@ export default function ProcessPage() {
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden animate-fade-in">
                 <div className="grid md:grid-cols-3 gap-0">
                   <div className="relative h-full min-h-[250px] md:min-h-full bg-blue-900">
-                    <Image 
-                      src="https://gbcinfrastructure.in/material/front/assets/img/banner-new-3.jpg"
+                    {allImages[0] && <Image 
+                      src={allImages[0].imageUrl}
                       alt="Intake Process"
                       fill
                       className="object-cover"
-                    />
+                    />}
                     <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-blue-900/30"></div>
                     <div className="absolute bottom-0 left-0 p-6 text-white">
                       <h3 className="text-2xl font-bold">Intake Process</h3>
@@ -139,12 +122,12 @@ export default function ProcessPage() {
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden animate-fade-in">
                 <div className="grid md:grid-cols-3 gap-0">
                   <div className="relative h-full min-h-[250px] md:min-h-full bg-blue-900">
-                    <Image 
-                      src="https://gbcinfrastructure.in/material/front/assets/img/banner-new-3.jpg"
+                    {allImages[1] && <Image 
+                      src={allImages[1].imageUrl}
                       alt="Design of R.C.C Over Head Tank"
                       fill
                       className="object-cover"
-                    />
+                    />}
                     <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-blue-900/30"></div>
                     <div className="absolute bottom-0 left-0 p-6 text-white">
                       <h3 className="text-2xl font-bold">Design of R.C.C Over Head Tank</h3>
@@ -168,12 +151,12 @@ export default function ProcessPage() {
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden animate-fade-in">
                 <div className="grid md:grid-cols-3 gap-0">
                   <div className="relative h-full min-h-[250px] md:min-h-full bg-blue-900">
-                    <Image 
-                      src="https://gbcinfrastructure.in/material/front/assets/img/banner-new-3.jpg"
+                    {allImages[2] && <Image 
+                      src={allImages[2].imageUrl}
                       alt="Surface Water Treatment Plant Process"
                       fill
                       className="object-cover"
-                    />
+                    />}
                     <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-blue-900/30"></div>
                     <div className="absolute bottom-0 left-0 p-6 text-white">
                       <h3 className="text-2xl font-bold">Surface Water Treatment Plant Process</h3>

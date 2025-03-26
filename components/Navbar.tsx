@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, Settings2Icon, X } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -14,9 +14,15 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -33,10 +39,6 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   return (
     <header
@@ -131,23 +133,24 @@ const Navbar = () => {
                         </NavigationMenuLink>
                       </Link>
                     </li>
-                    <li>
-                      <Link href="/history" legacyBehavior passHref>
-                        <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-blue-50 dark:hover:bg-blue-900 hover:text-blue-600 dark:hover:text-blue-300 focus:bg-blue-50 dark:focus:bg-blue-900/20 focus:text-blue-600 dark:focus:text-blue-300">
-                          <div className="text-sm font-medium leading-none">
-                            Careers
-                          </div>
-                          <p className="line-clamp-2 text-sm leading-snug text-gray-600 dark:text-gray-400">
-                            Join our team and be part of our success
-                          </p>
-                        </NavigationMenuLink>
-                      </Link>
-                    </li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-              <Link href="/process" legacyBehavior passHref>
+                <Link href="/services" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={`${navigationMenuTriggerStyle()} ${
+                      scrolled
+                        ? "text-gray-900 dark:text-white"
+                        : "text-gray-900 dark:text-white"
+                    }`}
+                  >
+                    Services
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link href="/process" legacyBehavior passHref>
                   <NavigationMenuLink
                     className={`${navigationMenuTriggerStyle()} ${
                       scrolled
@@ -185,97 +188,69 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Toggle Menu"
-            onClick={toggleMenu}
-            className={
-              scrolled
-                ? "text-gray-900 dark:text-white"
-                : "text-gray-900 dark:text-white"
-            }
-          >
-            {isMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
-          </Button>
+          <Drawer>
+            <DrawerTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label="Toggle Menu"
+                className={
+                  scrolled
+                    ? "text-gray-900 dark:text-white"
+                    : "text-gray-900 dark:text-white"
+                }
+              >
+                <Menu className="h-6 w-6" />
+              </Button>
+            </DrawerTrigger>
+            <DrawerContent className="bg-gray-900 border-none">
+              <DrawerHeader className="border-b border-gray-800 pb-2">
+                <DrawerTitle className="text-white">Menu</DrawerTitle>
+              </DrawerHeader>
+              <nav className="flex flex-col space-y-6 p-6">
+                <Link
+                  href="/"
+                  className="text-lg font-medium text-gray-100 hover:text-blue-400 transition-colors flex items-center"
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/about"
+                  className="text-lg font-medium text-gray-100 hover:text-blue-400 transition-colors flex items-center"
+                >
+                  About
+                </Link>
+                <Link
+                  href="/services"
+                  className="text-lg font-medium text-gray-100 hover:text-blue-400 transition-colors flex items-center"
+                >
+                  Services
+                </Link>
+                <Link
+                  href="/process"
+                  className="text-lg font-medium text-gray-100 hover:text-blue-400 transition-colors flex items-center"
+                >
+                  Process
+                </Link>
+                <Link
+                  href="/projects"
+                  className="text-lg font-medium text-gray-100 hover:text-blue-400 transition-colors flex items-center"
+                >
+                  Projects
+                </Link>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-medium transition-colors"
+                >
+                  Contact
+                </Link>
+              </nav>
+            </DrawerContent>
+          </Drawer>
         </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="absolute top-16 left-0 right-0 z-50 border-b bg-white dark:bg-gray-900 shadow-lg md:hidden">
-            <nav className="container py-4">
-              <ul className="flex flex-col space-y-4">
-                <li>
-                  <Link
-                    href="/"
-                    className="text-lg font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400"
-                    onClick={toggleMenu}
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about"
-                    className="text-lg font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400"
-                    onClick={toggleMenu}
-                  >
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/services"
-                    className="text-lg font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400"
-                    onClick={toggleMenu}
-                  >
-                    Services
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/projects"
-                    className="text-lg font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400"
-                    onClick={toggleMenu}
-                  >
-                    Projects
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
-                    onClick={toggleMenu}
-                  >
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        )}
       </div>
     </header>
   );
 };
-
-const services = [
-  {
-    title: "Construction Management",
-    description:
-      "Expert management of construction projects from planning to completion",
-    href: "/services/construction-management",
-  },
-  {
-    title: "Infrastructure Development",
-    description:
-      "Building sustainable infrastructure for communities and businesses",
-    href: "/services/infrastructure-development",
-  },
-];
 
 export default Navbar;

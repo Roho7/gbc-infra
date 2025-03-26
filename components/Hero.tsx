@@ -38,9 +38,9 @@ const Hero = () => {
       />
 
       <div className="relative z-10">
-        <div className="grid gap-12 md:grid-cols-2 md:gap-16 items-center max-md:px-8 md:pl-10">
+        <div className="grid gap-3 md:grid-cols-2 md:gap-16 items-center max-md:px-8 md:pl-10">
           <motion.div 
-            className="flex flex-col gap-6 py-20 md:py-32"
+            className="flex flex-col gap-6 pt-20 pb-10 md:py-32"
             initial={{ opacity: 0, y: 50 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -51,11 +51,10 @@ const Hero = () => {
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Building{" "}
+              Delivering Clean {" "}
               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                Tomorrow&apos;s
+              Water Solutions
               </span>{" "}
-              Infrastructure Today
             </motion.h1>
             <motion.p 
               className="text-xl text-gray-700 dark:text-gray-300"
@@ -63,8 +62,7 @@ const Hero = () => {
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              GBC Infrastructure delivers innovative, sustainable, and reliable
-              infrastructure solutions that transform communities and businesses.
+              GBC Infrastructure specializes in constructing and managing water treatment facilities, serving government and semi-government sectors accross West Bengal.
             </motion.p>
             <motion.div 
               className="flex flex-col sm:flex-row gap-4 mt-2"
@@ -86,7 +84,7 @@ const Hero = () => {
           
           {/* Scrolling Image Gallery */}
           <motion.div 
-            className="relative h-[300px] sm:h-[400px] md:h-[90vh] rounded-lg overflow-hidden shadow-xl"
+            className="relative max-md:mb-3 h-[300px] sm:h-[400px] md:h-[90vh] rounded-lg overflow-hidden shadow-xl"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={isVisible ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
