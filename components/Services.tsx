@@ -1,8 +1,8 @@
 'use client'
 import { Factory, HardHat, Warehouse } from "lucide-react";
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
-
+import { useRouter } from "next/navigation";
+import { Button } from "./ui/button";
 const services = [
   {
     icon: <HardHat className="h-10 w-10" />,
@@ -28,30 +28,7 @@ const services = [
 ];
 
 const Services = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight;
-      const sectionElement = document.getElementById('services-section');
-      
-      if (sectionElement) {
-        const sectionPosition = sectionElement.offsetTop + 200;
-        
-        if (scrollPosition > sectionPosition) {
-          setIsVisible(true);
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check on initial load
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
+  const router = useRouter();
   return (
     <section id="services-section" className="relative py-20 overflow-hidden">
       {/* Background styling */}
@@ -79,7 +56,7 @@ const Services = () => {
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4 text-gray-900">
@@ -97,7 +74,7 @@ const Services = () => {
               key={index}
               className="bg-white rounded-lg p-6 shadow-lg transition-all flex flex-col h-full border border-gray-100 group"
               initial={{ opacity: 0, y: 50 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               whileHover={{ y: -10, transition: { duration: 0.3 } }}
             >
@@ -135,20 +112,20 @@ const Services = () => {
           ))}
         </div>
 
-        {/* <motion.div 
+        <motion.div 
           className="mt-16 text-center"
           initial={{ opacity: 0, y: 30 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          <Button 
-            asChild 
+          <Button  
             size="lg" 
             className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-lg"
+            onClick={() => router.push("/services")}
           >
-            <Link href="/services">View All Services</Link>
+            View All Services
           </Button>
-        </motion.div> */}
+        </motion.div>
       </div>
       
       {/* Decorative elements */}

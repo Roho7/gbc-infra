@@ -1,11 +1,10 @@
-import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import Projects from "@/components/Projects";
-import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
 import ContactInfo from "@/components/ContactInfo";
-import "./globals.css";
+import Hero from "@/components/Hero";
+import Projects from "@/components/Projects";
+import Services from "@/components/Services";
 import { DataProvider } from "./_hooks/useData";
+import "./globals.css";
 
 export default function Home() {
   return (
@@ -16,7 +15,7 @@ export default function Home() {
           <ContactInfo />
           <Services />
           <Projects />
-          <Testimonials />
+          {/* <Testimonials /> */}
           <CTA />
         </main>
       </div>
