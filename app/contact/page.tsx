@@ -3,26 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Building, Facebook, Linkedin, Mail, MapPin, Phone, Send, Twitter, User, Youtube } from "lucide-react";
-import { useEffect, useState } from "react";
-import { getImages, ImageType } from "../_actions/queries";
+import { useState } from "react";
 import PageHeader from "../_components/page-header";
 
 export default function ContactPage() {
-  const [contactImages, setContactImages] = useState<ImageType[]>([]);
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
     message: ''
   });
-
-  useEffect(() => {
-    const fetchHeaderImage = async () => {
-      const images = await getImages("/contact");
-      setContactImages(images);
-    };
-    fetchHeaderImage();
-  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
@@ -55,7 +46,7 @@ ${formData.message}
   return (
     <main className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <PageHeader title="Contact Us" description="Get in touch with our team to discuss your infrastructure needs and how we can help bring your projects to life." image={contactImages.find(image => image.section === "header")?.imageUrl} />
+      <PageHeader title="Contact Us" description="Get in touch with our team to discuss your infrastructure needs and how we can help bring your projects to life." />
 
       {/* Contact Information Section */}
       <section className="py-12 bg-white dark:bg-gray-900">

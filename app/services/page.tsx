@@ -33,11 +33,7 @@ const services = [
 ];
 
 export default function ServicesPage() {
-  const { projects, allImages, categories} = useData()
-
-  const headerImage = useMemo(() => {
-    return allImages.filter(image => image.section === "services").find(image => image.title === "header")
-  }, [allImages])
+  const { projects, categories} = useData()
 
   const servicesImages = useMemo(() => {
     return projects.reduce((acc, project) => {
@@ -54,8 +50,7 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <PageHeader 
         title="Our Services" 
-        description="Water management and treatment infrastructure solutions." 
-        image={headerImage?.imageUrl} 
+        description="Water management and treatment infrastructure solutions."  
       />
 
       {/* Services Section */}

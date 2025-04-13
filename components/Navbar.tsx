@@ -1,10 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { Menu } from "lucide-react";
+import { useData } from "@/app/_hooks/useData";
 import { Button } from "@/components/ui/button";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,16 +18,14 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
+import { Menu } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const {allImages} = useData();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -112,7 +114,7 @@ const Navbar = () => {
                             Learn about our company, mission, and values
                           </p>
                           <Image
-                            src="https://gbcinfrastructure.in/material/front/assets/img/banner-new-3.jpg"
+                            src={'https://cdn.sanity.io/images/ipbdfel6/production/4ce1efa65408a12fb5dcca6b8344cfb8fcf79714-9000x6000.jpg'}
                             fill
                             alt="gbc"
                             className="absolute z-0 duration-100"

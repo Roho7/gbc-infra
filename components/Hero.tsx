@@ -16,8 +16,6 @@ const Hero = () => {
     setIsVisible(true);
   }, []);
 
-  console.log(allImages.length)
-
   return (
     <section className="relative overflow-hidden bg-background px-2">
       {/* Background Pattern */}

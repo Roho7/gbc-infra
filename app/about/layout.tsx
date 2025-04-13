@@ -30,9 +30,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   };
 }
-
-
-const ServicesLayout = ({ children }: { children: React.ReactNode }) => {
+const AboutLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <DataProvider>
       {children}
@@ -40,4 +38,4 @@ const ServicesLayout = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-export default ServicesLayout
+export default AboutLayout

@@ -31,6 +31,7 @@ export interface ImageType {
   imageUrl: string
   dimensions: ImageDimensions
   section: string
+  route: string
   // Add any other fields you need
 }
 
@@ -96,10 +97,11 @@ categories,
   completedAt
 }| order(position asc)`;
 
-const imageQuery = (route?: string) => groq`*[_type == "gbc-pictures" ${route ? `&& route == "${route}"` : ""}] {
+const imageQuery = (route?: string) => groq`*[_type == "gbc-pictures" ${route ? `&& route == "${route}"` : ""} && route != "/"] {
   title,
   alt,
   caption,
+  route,
   "imageUrl": image.asset->url,
   "dimensions": image.asset->metadata.dimensions,
   section

@@ -4,8 +4,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Filter, Search } from "lucide-react";
 import Image from "next/image";
-import React, { useEffect, useMemo, useState } from "react";
-import { getImages, ImageType } from "../_actions/queries";
+import React, { useMemo, useState } from "react";
 import PageHeader from "../_components/page-header";
 
 // Project categories for filtering
@@ -14,7 +13,6 @@ export default function ProjectsPage() {
   const { projects, isLoading, error, categories} = useData();
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const [projectImages, setProjectImages] = useState<ImageType[]>([]);
 
   const filteredProjects = useMemo(() => {
     if (projects) {
@@ -40,13 +38,6 @@ export default function ProjectsPage() {
     }
   }, [projects, activeCategory, searchQuery]);
 
-  useEffect(() => {
-    const fetchImages = async () => {
-      const images = await getImages('/projects');
-      setProjectImages(images);
-    };
-    fetchImages();
-  }, []);
 
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category);
@@ -56,14 +47,11 @@ export default function ProjectsPage() {
     setSearchQuery(e.target.value);
   };
 
-  const headerImage = useMemo(() => {
-    return projectImages.find(image => image.section === "header")?.imageUrl;
-  }, [projectImages]);
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900">
       {/* Hero Section */}
-      <PageHeader title="Our Projects" description="Explore our portfolio of completed and ongoing projects." image={headerImage} />
+      <PageHeader title="Our Projects" description="Explore our portfolio of completed and ongoing projects." />
 
       {/* Stats Section from Screenshot */}
       <section className="py-16 px-8 bg-white">

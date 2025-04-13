@@ -11,10 +11,6 @@ import { useData } from "../_hooks/useData";
 export default function ProcessPage() {
   const { allImages, documents } = useData()
 
-  const headerImage = useMemo(() => {
-    return allImages.filter(image => image.section === "process").find(image => image.title === "header")?.imageUrl
-  }, [allImages])
-
   const processDocuments = useMemo(() => {
     return documents.filter(document => document.category === "gbc-process")
   }, [documents])
@@ -22,7 +18,7 @@ export default function ProcessPage() {
   return (
     <main className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <PageHeader title="Our Process" description="Learn about our project management process." image={headerImage} />
+      <PageHeader title="Our Process" description="Learn about our project management process." />
 
 
       {/* Process Steps */}

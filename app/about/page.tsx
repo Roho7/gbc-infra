@@ -3,34 +3,20 @@ import CTA from "@/components/CTA";
 import { Award, Building, Target, Users } from "lucide-react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import React, { useEffect, useMemo, useRef } from "react";
-import { getImages, ImageType } from "../_actions/queries";
+import { useEffect, useMemo, useRef } from "react";
 import PageHeader from "../_components/page-header";
+import { useData } from "../_hooks/useData";
 import CorporatePolicies from "./_components/CorporatePolicies";
-
 export default function AboutPage() {
   const searchParams = useSearchParams();
   const teamSectionRef = useRef<HTMLElement>(null);
-  const [aboutImages, setAboutImages] = React.useState<ImageType[]>([]);
-
-  const headerImage = useMemo(() => {
-    return aboutImages.find(image => image.section === "header")?.imageUrl || '';
-  }, [aboutImages]);
+  const {allImages} = useData();
 
   const bodyImage = useMemo(() => {
-    return aboutImages.find(image => image.section === "body")?.imageUrl || '';
-  }, [aboutImages]);
-  
-  useEffect(() => {
-    // Fetch images
-    const fetchImages = async () => {
-      const fetchedImages = await getImages('/about');
-      
-      setAboutImages(fetchedImages);
-    };
-    
-    fetchImages();
-  }, []);
+    return allImages.find(image => image.route === "/about" && image.section === "body")?.imageUrl || '';
+  }, [allImages]);
+
+
   
   useEffect(() => {
     // Check if we need to scroll to the team section
@@ -54,7 +40,7 @@ export default function AboutPage() {
   return (
     <main className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <PageHeader title="About Us" description="Learn about our company and our mission." image={headerImage} />
+      <PageHeader title="About Us" description="Learn about our company and our mission." />
 
       {/* Company Overview */}
       <section className="py-16 md:py-24 relative overflow-hidden">

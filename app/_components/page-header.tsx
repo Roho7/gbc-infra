@@ -1,18 +1,25 @@
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { useMemo } from 'react';
+import { useData } from '../_hooks/useData';
 
 type Props = {
     title: string;
     description?: string;
-    image?: string;
 }
 
-const PageHeader = ({title, description, image}: Props) => {
+const PageHeader = ({title, description}: Props) => {
+  const {allImages} = useData();
+  const pathname = usePathname();
+  const headerImage = useMemo(() => {
+    return allImages.find((image) => image.route === pathname && image.section === "header")?.imageUrl;
+  }, [allImages, pathname]);
   return (
     <section className="relative py-20 overflow-hidden">
         {/* Background Image with Gradient Overlay */}
         <div className="absolute inset-0 z-0">
           <Image 
-            src={image || "https://gbcinfrastructure.in/material/front/assets/img/banner-new-4.jpg"}
+            src={headerImage || "https://gbcinfrastructure.in/material/front/assets/img/banner-new-4.jpg"}
             alt={title}
             fill
             className="object-cover"
