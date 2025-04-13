@@ -1,6 +1,5 @@
 "use client";
 
-import { useData } from "@/app/_hooks/useData";
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
@@ -25,7 +24,6 @@ import { useEffect, useState } from "react";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const {allImages} = useData();
 
   useEffect(() => {
     const handleScroll = () => {
