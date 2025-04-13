@@ -161,8 +161,8 @@ export default function ProcessPage() {
               <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden animate-fade-in">
                 <div className="grid md:grid-cols-3 gap-0">
                   <div className="relative h-full min-h-[250px] md:min-h-full bg-blue-900">
-                    {allImages[2] && <Image 
-                      src={allImages[2].imageUrl}
+                    {allImages[3] && <Image 
+                      src={allImages[3].imageUrl}
                       alt="Surface Water Treatment Plant Process"
                       fill
                       className="object-cover"

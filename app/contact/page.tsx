@@ -9,6 +9,12 @@ import PageHeader from "../_components/page-header";
 
 export default function ContactPage() {
   const [contactImages, setContactImages] = useState<ImageType[]>([]);
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    message: ''
+  });
 
   useEffect(() => {
     const fetchHeaderImage = async () => {
@@ -17,6 +23,34 @@ export default function ContactPage() {
     };
     fetchHeaderImage();
   }, []);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [id]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Create email body with form data
+    const emailBody = `
+Name: ${formData.name}
+Phone: ${formData.phone}
+Email: ${formData.email}
+
+Message:
+${formData.message}
+    `.trim();
+
+    // Create mailto URL
+    const mailtoUrl = `mailto:info@gbcinfrastructure.in?subject=Business Enquiry from ${formData.name}&body=${encodeURIComponent(emailBody)}`;
+
+    // Open email client
+    window.location.href = mailtoUrl;
+  };
 
   return (
     <main className="flex flex-col min-h-screen">
@@ -32,7 +66,7 @@ export default function ContactPage() {
               <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
                 Business <span className="text-blue-600">Enquiry</span>
               </h2>
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <Label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Name
@@ -44,6 +78,9 @@ export default function ContactPage() {
                     <Input
                       type="text"
                       id="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
                       className="pl-10 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                       placeholder="Your Name"
                     />
@@ -61,6 +98,9 @@ export default function ContactPage() {
                     <Input
                       type="tel"
                       id="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      required
                       className="pl-10 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                       placeholder="Your Phone Number"
                     />
@@ -78,6 +118,9 @@ export default function ContactPage() {
                     <Input
                       type="email"
                       id="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
                       className="pl-10 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                       placeholder="Your Email Address"
                     />
@@ -92,13 +135,16 @@ export default function ContactPage() {
                     <textarea
                       id="message"
                       rows={4}
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      required
                       className="p-2 block w-full rounded-md border-gray-300 dark:border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
                       placeholder="Your Message"
                     ></textarea>
                   </div>
                 </div>
                 
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white">
                   SEND ENQUIRY <Send className="ml-2 h-4 w-4" />
                 </Button>
               </form>

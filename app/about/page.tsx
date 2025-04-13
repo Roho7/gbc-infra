@@ -153,14 +153,14 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-3 gap-0">
               <div className="relative h-full min-h-[300px] md:min-h-full bg-blue-900">
                 <Image 
-                  src="https://gbcinfrastructure.in/material/front/assets/img/md.jpg"
+                  src="/partha-guha.png"
                   alt="Managing Director"
                   fill
-                  className="object-cover"
+                  className="object-cover scale-110"
                 />
               </div>
               <div className="md:col-span-2 p-8 md:p-10">
-                <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Mr. Bijay Chowdhury</h3>
+                <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Mr. Partha Guha</h3>
                 <p className="text-gray-700 dark:text-gray-300 mb-4 italic">
                 &quot;At GBC Infrastructure, we are committed to excellence in every project we undertake. Our vision is to be the leading infrastructure company known for quality, innovation, and timely delivery.&quot;
                 </p>
@@ -192,17 +192,17 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto stagger-children">
             {[
               {
-                image: "https://gbcinfrastructure.in/material/front/assets/img/team/bijay.jpg",
+                image: "/riju-ghoshal.png",
                 name: "MR. RIJU GHOSHAL",
                 position: "CEO"
               },
               {
-                image: "https://gbcinfrastructure.in/material/front/assets/img/team/poulami.jpg",
+                image: "/poulami-ghoshal.png",
                 name: "MRS. POULAMI GHOSHAL",
                 position: "Director Finance"
               },
               {
-                image: "https://gbcinfrastructure.in/material/front/assets/img/team/bhaskar.jpg",
+                image: "/bhismadeb-konar.png",
                 name: "MR. BHISMADEB KONAR",
                 position: "COO - Projects"
               }

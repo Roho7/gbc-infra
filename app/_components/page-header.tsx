@@ -1,5 +1,4 @@
-import React from 'react'
-import Image from 'next/image'
+import Image from 'next/image';
 
 type Props = {
     title: string;
@@ -7,7 +6,7 @@ type Props = {
     image?: string;
 }
 
-const Pageheaer = ({title, description, image}: Props) => {
+const PageHeader = ({title, description, image}: Props) => {
   return (
     <section className="relative py-20 overflow-hidden">
         {/* Background Image with Gradient Overlay */}
@@ -39,4 +38,4 @@ const Pageheaer = ({title, description, image}: Props) => {
   )
 }
 
-export default Pageheaer
+export default PageHeader

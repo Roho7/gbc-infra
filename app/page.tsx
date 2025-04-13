@@ -3,6 +3,7 @@ import ContactInfo from "@/components/ContactInfo";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import Services from "@/components/Services";
+import PartnerBanner from "./_components/partner-banner";
 import { DataProvider } from "./_hooks/useData";
 import "./globals.css";
 
@@ -17,6 +18,7 @@ export default function Home() {
           <Projects />
           {/* <Testimonials /> */}
           <CTA />
+          <PartnerBanner />
         </main>
       </div>
     </DataProvider>
