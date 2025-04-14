@@ -12,10 +12,11 @@ const PageHeader = ({title, description}: Props) => {
   const {allImages} = useData();
   const pathname = usePathname();
   const headerImage = useMemo(() => {
-    return allImages.find((image) => image.route === pathname && image.section === "header")?.imageUrl;
+    const image = allImages.find((image) => image.route === pathname && image.section === "header")?.imageUrl;
+    return image;
   }, [allImages, pathname]);
   return (
-    <section className="relative py-20 overflow-hidden">
+    <section className="relative py-20 overflow-hidden bg-blue-900">
         {/* Background Image with Gradient Overlay */}
         <div className="absolute inset-0 z-0">
           <Image 

@@ -44,7 +44,7 @@ export default function PartnerBanner() {
                   style={{ objectFit: 'contain' }}
                 />
               </div>
-              <span className="text-lg font-semibold text-blue-800 group-hover:text-blue-900 transition-colors duration-300">Visit GBC Construction</span>
+              <span className="text-lg font-semibold text-blue-800 group-hover:text-blue-900 transition-colors duration-300">Visit GB Construction</span>
             </Button>
 
             {/* Stay Here Button */}

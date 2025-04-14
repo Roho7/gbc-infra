@@ -2,10 +2,10 @@
 
 import { Button } from "@/components/ui/button";
 import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
 } from "@/components/ui/dialog";
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
@@ -43,7 +43,7 @@ export default function WelcomeModal() {
               <div className="w-24 h-24 relative">
                 <Image
                   src="/gb-logo.png"
-                  alt="GBC Construction Logo"
+                  alt="GB Construction Logo"
                   fill
                   style={{ objectFit: 'contain' }}
                 />
