@@ -180,17 +180,17 @@ export default function AboutPage() {
               {
                 image: "/riju-ghoshal.png",
                 name: "MR. RIJU GHOSHAL",
-                position: "CEO"
+                position: "CEO AND EXECUTIVE DIRECTOR"
               },
               {
                 image: "/poulami-ghoshal.png",
                 name: "MRS. POULAMI GHOSHAL",
-                position: "Director Finance"
+                position: "DIRECTOR FINANCE"
               },
               {
                 image: "/bhismadeb-konar.png",
                 name: "MR. BHISMADEB KONAR",
-                position: "COO - Projects"
+                position: "DIRECTOR OF PROJECTS"
               }
             ].map((member, index) => (
               <div 
