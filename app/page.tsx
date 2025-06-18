@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import Services from "@/components/Services";
 import PartnerBanner from "./_components/partner-banner";
+import VideoShowcase from "./_components/video-showcase";
 import { DataProvider } from "./_hooks/useData";
 import "./globals.css";
 
@@ -15,6 +16,7 @@ export default function Home() {
           <Hero />
           <ContactInfo />
           <Services />
+          <VideoShowcase />
           <Projects />
           {/* <Testimonials /> */}
           <CTA />

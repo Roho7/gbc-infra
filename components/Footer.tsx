@@ -92,7 +92,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="/team"
+                  href="/about#team"
                   className="text-gray-400 hover:text-blue-400 transition-colors"
                 >
                   Our Team

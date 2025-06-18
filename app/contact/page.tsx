@@ -23,24 +23,11 @@ export default function ContactPage() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Create email body with form data
-    const emailBody = `
-Name: ${formData.name}
-Phone: ${formData.phone}
-Email: ${formData.email}
+    // const res = await sendContactForm(formData)
 
-Message:
-${formData.message}
-    `.trim();
-
-    // Create mailto URL
-    const mailtoUrl = `mailto:info@gbcinfrastructure.in?subject=Business Enquiry from ${formData.name}&body=${encodeURIComponent(emailBody)}`;
-
-    // Open email client
-    window.location.href = mailtoUrl;
   };
 
   return (
