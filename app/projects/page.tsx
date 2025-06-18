@@ -276,7 +276,7 @@ export default function ProjectsPage() {
                 <span className="text-green-400"> • Status: {activeStatus}</span>
               )}
               {searchQuery && (
-                <span className="text-orange-400"> • Search: "{searchQuery}"</span>
+                <span className="text-orange-400"> • Search: &quot;{searchQuery}&quot;</span>
               )}
             </p>
           </div>

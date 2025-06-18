@@ -5,7 +5,6 @@ import nodemailer from 'nodemailer';
 export async function sendContactForm(formData: {name: string, phone: string, email: string, message: string}) {
   const name = formData.name;
   const email = formData.email;
-  const phone = formData.phone;
   const message = formData.message;
 
   const transporter = nodemailer.createTransport({
