@@ -52,21 +52,12 @@ const Navbar = () => {
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center space-x-2">
             <Image
-              src="/logo-black.png"
+              src="/gbc-latest.png"
               alt="GBC Infrastructure Logo"
-              width={40}
-              height={40}
+              width={1050}
+              height={1050}
               className="h-10 w-auto"
             />
-            <span
-              className={`hidden font-bold sm:inline-block text-xl ${
-                scrolled
-                  ? "text-gray-900 dark:text-white"
-                  : "text-gray-900 dark:text-white"
-              }`}
-            >
-              GBC Infrastructure
-            </span>
           </Link>
         </div>
 
