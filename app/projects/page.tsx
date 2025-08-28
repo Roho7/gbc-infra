@@ -9,8 +9,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useMemo, useState } from "react";
 import PageHeader from "../_components/page-header";
 
+const oandmCategoryId = "dc121c1b-48ee-449a-93d2-7968dca88906";
 // Project status types
-type ProjectStatus = "upcoming" | "ongoing" | "completed" | "all";
+type ProjectStatus = "O&M" | "ongoing" | "completed" | "all";
 
 export default function ProjectsPage() {
   const { projects, isLoading, error, categories} = useData();
@@ -30,7 +31,8 @@ export default function ProjectsPage() {
     if (categoryParam) {
       setActiveCategory(categoryParam);
     }
-    if (statusParam && ['upcoming', 'ongoing', 'completed', 'all'].includes(statusParam)) {
+    // Accept decoded "O&M" (from O%26M) and other valid statuses
+    if (statusParam && ['O&M', 'ongoing', 'completed', 'all'].includes(statusParam)) {
       setActiveStatus(statusParam);
     }
     if (searchParam) {
@@ -39,21 +41,23 @@ export default function ProjectsPage() {
   }, [searchParams]);
 
   // Function to determine project status based on dates
-  const getProjectStatus = (startedAt: string, completedAt: string): ProjectStatus => {
+  const getProjectStatus = (categories: {_ref: string}[], startedAt: string, completedAt: string): ProjectStatus[] => {
     const now = dayjs();
     const startDate = startedAt ? dayjs(startedAt) : null;
     const endDate = completedAt ? dayjs(completedAt) : null;
 
+    const statuses: ProjectStatus[] = [];
+
     if (endDate && endDate.isBefore(now)) {
-      return "completed";
-    } else if (startDate && startDate.isAfter(now)) {
-      return "upcoming";
-    } else if (startDate && startDate.isBefore(now) && (!endDate || endDate.isAfter(now))) {
-      return "ongoing";
-    } else {
-      // Default to ongoing if dates are unclear
-      return "ongoing";
+      statuses.push("completed");
+    } else if (!startDate || (!endDate || endDate.isAfter(now))) {
+       statuses.push("ongoing");
+     }
+    if (categories.some(cat => cat._ref === oandmCategoryId)) {
+      statuses.push("O&M");
     }
+
+    return statuses;
   };
 
   const filteredProjects = useMemo(() => {
@@ -71,8 +75,8 @@ export default function ProjectsPage() {
       // Apply status filter
       if (activeStatus !== "all") {
         filtered = filtered.filter(project => {
-          const projectStatus = getProjectStatus(project.startedAt, project.completedAt);
-          return projectStatus === activeStatus;
+          const projectStatus = getProjectStatus(project.categories, project.startedAt, project.completedAt);
+          return projectStatus.includes(activeStatus);
         });
       }
       
@@ -128,13 +132,13 @@ export default function ProjectsPage() {
 
   // Get project counts by status
   const statusCounts = useMemo(() => {
-    if (!projects) return { ongoing: 0, upcoming: 0, completed: 0, all: 0 };
+    if (!projects) return { ongoing: 0, "O&M": 0, completed: 0, all: 0 };
     
-    const counts = { ongoing: 0, upcoming: 0, completed: 0, all: projects.length };
+    const counts = { ongoing: 0, "O&M": 0, completed: 0, all: projects.length };
     
     projects.forEach(project => {
-      const status = getProjectStatus(project.startedAt, project.completedAt);
-      counts[status]++;
+      const status = getProjectStatus(project.categories, project.startedAt, project.completedAt);
+      status.forEach(s => counts[s]++);
     });
     
     return counts;
@@ -173,7 +177,7 @@ export default function ProjectsPage() {
                 >
                   All Categories
                 </Button>
-                {categories.map((category) => (
+                {categories.filter(cat => cat._id !== oandmCategoryId).map((category) => (
                   <Button 
                     key={category._id}
                     variant={category._id === activeCategory ? "default" : "outline"}
@@ -209,16 +213,16 @@ export default function ProjectsPage() {
                   All Status ({statusCounts.all})
                 </Button>
                 <Button 
-                  variant={activeStatus === "upcoming" ? "default" : "outline"}
+                  variant={activeStatus === "O&M" ? "default" : "outline"}
                   size="sm"
                   className={cn(
-                    activeStatus === "upcoming" 
+                    activeStatus === "O&M" 
                       ? "bg-orange-600 hover:bg-orange-700" 
                       : "border-slate-600 text-slate-400 hover:bg-slate-700 hover:text-white"
                   )}
-                  onClick={() => handleStatusChange("upcoming")}
+                  onClick={() => handleStatusChange("O&M")}
                 >
-                  Upcoming ({statusCounts.upcoming})
+                  O&M ({statusCounts['O&M']})
                 </Button>
                 <Button 
                   variant={activeStatus === "ongoing" ? "default" : "outline"}
@@ -298,11 +302,11 @@ export default function ProjectsPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProjects && filteredProjects.length > 0 ? (
                 filteredProjects.map((project) => {
-                  const projectStatus = getProjectStatus(project.startedAt, project.completedAt);
+                  const projectStatuses = getProjectStatus(project.categories, project.startedAt, project.completedAt);
                   const statusColors: Record<Exclude<ProjectStatus, "all">, string> = {
-                    upcoming: "bg-orange-600/20 text-orange-400",
+                    "O&M": "bg-orange-800/50 text-orange-50",
                     ongoing: "bg-blue-800/50 text-blue-50", 
-                    completed: "bg-green-600/20 text-green-400"
+                    completed: "bg-green-800/50 text-green-50"
                   };
 
                   return (
@@ -320,11 +324,13 @@ export default function ProjectsPage() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-90 group-hover:from-blue-900/90 transition-all"></div>
                         
                         {/* Status Badge */}
-                        <div className={cn(
-                          "absolute top-4 right-4 text-xs font-medium px-2 py-1 rounded-full capitalize",
-                          statusColors[projectStatus as Exclude<ProjectStatus, "all">]
+                        <div className="absolute top-4 right-4 flex gap-2">
+                        {projectStatuses.map((status, index) => <div key={index} className={cn(
+                          "text-xs font-medium px-2 py-1 rounded-full capitalize",
+                          statusColors[status as Exclude<ProjectStatus, "all">]
                         )}>
-                          {projectStatus}
+                          {status}
+                        </div>)}
                         </div>
                         
                         {/* Date Badge */}
