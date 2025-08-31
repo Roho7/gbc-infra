@@ -43,6 +43,8 @@ export interface ProjectType {
   categories: {_ref: string}[];
   startedAt: string;
   completedAt: string;
+  otherImages?: string[];
+  isMaintenanceProject?: boolean;
 }
 
 export interface CategoryType {
@@ -94,7 +96,9 @@ const projectsQuery = groq`*[_type == "gbc-projects"] {
   "mainImage": mainImage.asset->url,
 categories,
   startedAt,
-  completedAt
+  completedAt,
+  "otherImages": otherImages[].asset->url,
+  isMaintenanceProject
 }| order(position asc)`;
 
 const imageQuery = (route?: string) => groq`*[_type == "gbc-pictures" ${route ? `&& route == "${route}"` : ""} && route != "/"] {

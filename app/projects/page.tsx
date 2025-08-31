@@ -1,6 +1,21 @@
 'use client'
+import { ProjectType } from "@/app/_actions/queries";
 import { useData } from "@/app/_hooks/useData";
 import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
+} from "@/components/ui/drawer";
 import { cn } from "@/lib/utils";
 import dayjs from "dayjs";
 import { Filter, Search } from "lucide-react";
@@ -21,6 +36,8 @@ export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [activeStatus, setActiveStatus] = useState<ProjectStatus>("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<ProjectType | null>(null);
 
   // Initialize filters from URL params
   useEffect(() => {
@@ -312,7 +329,20 @@ export default function ProjectsPage() {
                   return (
                     <div 
                       key={project._id}
-                      className="group bg-slate-900/80 rounded-xl overflow-hidden border border-slate-700 hover:border-blue-500 transition-all shadow-lg hover:shadow-blue-900/20"
+                      className="group bg-slate-900/80 rounded-xl overflow-hidden border border-slate-700 hover:border-blue-500 transition-all shadow-lg hover:shadow-blue-900/20 cursor-pointer"
+                      role="button"
+                      tabIndex={0}
+                      onClick={() => {
+                        setSelectedProject(project);
+                        setIsDrawerOpen(true);
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setSelectedProject(project);
+                          setIsDrawerOpen(true);
+                        }
+                      }}
                     >
                       <div className="relative h-64 w-full overflow-hidden">
                         <Image
@@ -365,6 +395,63 @@ export default function ProjectsPage() {
           )}
         </div>
       </section>
+      {/* Project Drawer with Carousel */}
+      <Drawer open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
+        <DrawerContent side="bottom" className="w-full bg-gray-900 h-[60vh] overflow-clip">
+          {selectedProject && (
+            <div className="space-y-4">
+              <DrawerHeader>
+                <DrawerTitle className="text-white">
+                  {selectedProject.title}
+                </DrawerTitle>
+                <DrawerDescription>
+                  <span className="flex flex-wrap gap-2">
+                    {selectedProject.categories?.map((catRef) => {
+                      const cat = categories.find((c) => c._id === catRef._ref);
+                      if (!cat) return null;
+                      return (
+                        <span
+                          key={cat._id}
+                          className="inline-block rounded-full bg-blue-600/20 text-blue-300 px-3 py-1 text-xs font-medium capitalize"
+                        >
+                          {cat.title}
+                        </span>
+                      );
+                    })}
+                  </span>
+                </DrawerDescription>
+              </DrawerHeader>
+
+              <div className="">
+                <Carousel className=" w-full md:w-[50%] mx-auto">
+                  <CarouselContent>
+                    {[
+                      selectedProject.mainImage,
+                      ...(selectedProject.otherImages || []),
+                    ]
+                      .map((imgSrc, idx) => (
+                        <CarouselItem key={idx}>
+                          <div className=" w-full h-[50vh] overflow-hidden rounded-lg border border-slate-700">
+                            <Image
+                              src={imgSrc as string}
+                              alt={`${selectedProject.title} image ${idx + 1}`}
+                              width={1000}
+                              height={1000}
+                              className="object-cover rounded-2xl"
+                              // sizes="(max-width: 640px) 90vw, 640px"
+                            />
+                          </div>
+                        </CarouselItem>
+                      ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="-left-3" />
+                  <CarouselNext className="-right-3" />
+                </Carousel>
+              </div>
+            </div>
+          )}
+        </DrawerContent>
+      </Drawer>
       {/* Stats Section from Screenshot */}
       <section className="py-16 px-8 bg-white">
         <div className="max-w-7xl mx-auto">
