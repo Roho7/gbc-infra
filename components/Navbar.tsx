@@ -207,6 +207,19 @@ const Navbar = () => {
 
               </NavigationMenuItem>
               <NavigationMenuItem>
+                <Link href="/" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={`${navigationMenuTriggerStyle()} ${
+                      scrolled
+                        ? "text-gray-900 dark:text-white"
+                        : "text-gray-900 dark:text-white"
+                    }`}
+                  >
+                    MSR
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
                 <Link href="/contact" legacyBehavior passHref>
                   <Button className="bg-blue-600 hover:bg-blue-700 text-white ml-2">
                     Contact
@@ -268,6 +281,12 @@ const Navbar = () => {
                   className="text-lg font-medium text-gray-100 hover:text-blue-400 transition-colors flex items-center"
                 >
                   Projects
+                </Link>
+                <Link
+                  href="/"
+                  className="text-lg font-medium text-gray-100 hover:text-blue-400 transition-colors flex items-center"
+                >
+                  MSR
                 </Link>
                 <Link
                   href="/contact"

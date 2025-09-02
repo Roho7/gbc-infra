@@ -1,11 +1,11 @@
 'use client'
-import React, { useEffect, useState } from "react";
+import { useData } from "@/app/_hooks/useData";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { motion } from "motion/react";
-import { ArrowRight } from "lucide-react";
-import { useData } from "@/app/_hooks/useData";
+import { useEffect, useState } from "react";
 
 const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -57,9 +57,9 @@ const Projects = () => {
       <div className="relative z-10">
         <motion.div 
           className="flex flex-col md:flex-row md:items-end md:justify-between mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
+          // initial={{ opacity: 0, y: 30 }}
+          // animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          // transition={{ duration: 0.8 }}
         >
           <div>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4 text-white">
@@ -71,10 +71,10 @@ const Projects = () => {
             </p>
           </div>
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={isVisible ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            whileHover={{ scale: 1.05 }}
+            // initial={{ opacity: 0, x: 20 }}
+            // animate={isVisible ? { opacity: 1, x: 0 } : {}}
+            // transition={{ duration: 0.6, delay: 0.3 }}
+            // whileHover={{ scale: 1.05 }}
           >
             <Button 
               variant="outline" 
@@ -104,10 +104,10 @@ const Projects = () => {
           {projects.slice(0, 3).map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              // initial={{ opacity: 0, y: 50 }}
+              // animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              // transition={{ duration: 0.6, delay: index * 0.2 }}
+              // whileHover={{ y: -10, transition: { duration: 0.3 } }}
             >
               {/* <Link
                 href={`/projects/${project._id}`}

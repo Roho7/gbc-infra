@@ -41,23 +41,23 @@ const Services = () => {
           backgroundImage: 'radial-gradient(circle, rgba(59,130,246,0.8) 1px, transparent 1px)',
           backgroundSize: '30px 30px',
         }}
-        animate={{
-          backgroundPosition: ['0% 0%', '100% 100%'],
-        }}
-        transition={{
-          duration: 60,
-          repeat: Infinity,
-          repeatType: "loop",
-          ease: "linear"
-        }}
+        // animate={{
+        //   backgroundPosition: ['0% 0%', '100% 100%'],
+        // }}
+        // transition={{
+        //   duration: 60,
+        //   repeat: Infinity,
+        //   repeatType: "loop",
+        //   ease: "linear"
+        // }}
       />
       
       <div className="relative z-10">
         <motion.div 
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          // initial={{ opacity: 0, y: 30 }}
+          // whileInView={{ opacity: 1, y: 0 }}
+          // transition={{ duration: 0.8 }}
         >
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4 text-gray-900">
             Our <span className="text-blue-600">Services</span>
@@ -73,10 +73,10 @@ const Services = () => {
             <motion.div
               key={index}
               className="bg-white rounded-lg p-6 shadow-lg transition-all flex flex-col h-full border border-gray-100 group"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              // initial={{ opacity: 0, y: 50 }}
+              // whileInView={{ opacity: 1, y: 0 }}
+              // transition={{ duration: 0.6, delay: index * 0.2 }}
+              // whileHover={{ y: -10, transition: { duration: 0.3 } }}
             >
               <motion.div 
                 className="mb-4 text-blue-600 bg-blue-50 p-3 rounded-full w-fit"
@@ -114,9 +114,9 @@ const Services = () => {
 
         <motion.div 
           className="mt-16 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          // initial={{ opacity: 0, y: 30 }}
+          // whileInView={{ opacity: 1, y: 0 }}
+          // transition={{ duration: 0.8, delay: 0.6 }}
         >
           <Button  
             size="lg" 

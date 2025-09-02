@@ -16,6 +16,10 @@ export default function AboutPage() {
     return allImages.find(image => image.route === "/about" && image.section === "body")?.imageUrl || '';
   }, [allImages]);
 
+  const teamImages = useMemo(() => {
+    return allImages.filter(image => image.route === "/about" && image.section === "team")?.map(image => image.imageUrl) || [];
+  }, [allImages]);
+
 
   
   useEffect(() => {
@@ -176,43 +180,102 @@ export default function AboutPage() {
           </div>
           
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto stagger-children">
-            {[
-              {
-                image: "/riju-ghoshal.png",
-                name: "MR. RIJU GHOSHAL",
-                position: "CEO AND EXECUTIVE DIRECTOR"
-              },
-              {
-                image: "/poulami-ghoshal.png",
-                name: "MRS. POULAMI GHOSHAL",
-                position: "DIRECTOR FINANCE"
-              },
-              {
-                image: "/bhismadeb-konar.png",
-                name: "MR. BHISMADEB KONAR",
-                position: "DIRECTOR OF PROJECTS"
-              }
-            ].map((member, index) => (
-              <div 
-                key={index}
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden animate-fade-in hover-lift border border-gray-100 dark:border-gray-700"
-              >
-                <div className="relative h-64 w-full">
-                  <Image 
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                  />
+              {[
+                {
+                  image: "/riju-ghoshal.png",
+                  name: "MR. RIJU GHOSHAL",
+                  position: "CEO AND EXECUTIVE DIRECTOR"
+                },
+                {
+                  image: "/poulami-ghoshal.png",
+                  name: "MRS. POULAMI GHOSHAL",
+                  position: "DIRECTOR FINANCE"
+                },
+                {
+                  image: "/bhismadeb-konar.png",
+                  name: "MR. BHISMADEB KONAR",
+                  position: "DIRECTOR OF PROJECTS"
+                }
+              ].map((member, index) => (
+                <div 
+                  key={index}
+                  className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden animate-fade-in hover-lift border border-gray-100 dark:border-gray-700"
+                >
+                  <div className="relative h-64 w-full">
+                    <Image 
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-6 text-center">
+                    <h3 className="text-lg font-bold mb-1 text-gray-900 dark:text-white">{member.position}</h3>
+                    <p className="text-blue-600 font-medium">{member.name}</p>
+                  </div>
                 </div>
-                <div className="p-6 text-center">
-                  <h3 className="text-lg font-bold mb-1 text-gray-900 dark:text-white">{member.position}</h3>
-                  <p className="text-blue-600 font-medium">{member.name}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+
+          {/* Team Images Collage Grid */}
+
+
         </div>
+        <section className="mt-16 py-16 relative overflow-hidden bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900">
+        <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in z-10">
+            <h2 className="text-3xl font-bold mb-6 text-white">Our Staff</h2>
+            <p className="text-gray-300 dark:text-gray-300">
+              AT G.B.C WE HAVE A TEAM OF EXPERIENCED AND DEDICATED PROFESSIONALS.
+            </p>
+          </div>
+
+          {teamImages.length > 0 && (
+            <div className="grid grid-cols-6 md:grid-cols-9 lg:grid-cols-12 gap-2 max-w-6xl mx-auto stagger-children auto-rows-[40px]">
+              {teamImages.map((imageUrl, index) => {
+                // Define the three patterns
+                const patterns = [
+                  { colSpan: 'col-span-3 md:col-span-4 lg:col-span-5', rowSpan: 'row-span-4' }, // Wide
+                  { colSpan: 'col-span-2 md:col-span-3 lg:col-span-3', rowSpan: 'row-span-4' }, // Tall
+                  { colSpan: 'col-span-2 md:col-span-2 lg:col-span-4', rowSpan: 'row-span-4' }, // Medium-wide
+                ];
+                
+                // Ensure each row has all three patterns exactly once
+                const rowIndex = Math.floor(index / 3);
+                const positionInRow = index % 3;
+                
+                // Shuffle patterns for each row to avoid monotony
+                const shuffledPatterns = [...patterns];
+                if (rowIndex % 2 === 1) {
+                  // Alternate pattern order for odd rows
+                  shuffledPatterns.reverse();
+                }
+                if (rowIndex % 3 === 2) {
+                  // Different order for every third row
+                  const lastPattern = shuffledPatterns.pop();
+                  if (lastPattern) {
+                    shuffledPatterns.unshift(lastPattern);
+                  }
+                }
+                
+                const pattern = shuffledPatterns[positionInRow];
+                
+                return (
+                  <div 
+                    key={index}
+                    className={`relative group overflow-hidden rounded-lg shadow-lg animate-fade-in hover-lift border border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 ${pattern.colSpan} ${pattern.rowSpan}`}
+                  >
+                    <Image 
+                      src={imageUrl}
+                      alt={`Team member ${index + 1}`}
+                      fill
+                      className="object-top object-cover transition-transform duration-300 group-hover:scale-110"
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          </section>
         
         {/* Decorative elements */}
         <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-blue-600/10 rounded-full blur-3xl"></div>
