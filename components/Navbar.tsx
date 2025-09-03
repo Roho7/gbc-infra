@@ -215,7 +215,7 @@ const Navbar = () => {
                         : "text-gray-900 dark:text-white"
                     }`}
                   >
-                    MSR
+                    CSR
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
@@ -286,7 +286,7 @@ const Navbar = () => {
                   href="/"
                   className="text-lg font-medium text-gray-100 hover:text-blue-400 transition-colors flex items-center"
                 >
-                  MSR
+                  CSR
                 </Link>
                 <Link
                   href="/contact"
